@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\admin\PembinaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +15,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', function () {
-
-    $header_page = "Dashboard";
-
-    return view('admin/dashboard', compact('header_page'));
-});
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::resource('/pembina', PembinaController::class);
