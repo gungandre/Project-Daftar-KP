@@ -10,5 +10,7 @@ class Pembina extends Model
     use HasFactory;
 
     protected $table = "pembina";
-    public $timestaps = false;
+    public $fillable = [
+        "user_id", "nama_pembina", "alamat", "bagian_kerja", "no_hp", "status"
+    ];
 }

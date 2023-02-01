@@ -14,9 +14,17 @@
 
                 <div class="card-body">
 
+                    @if (session('message_success'))
+                        <div class="alert alert-success">{{ session('message_success') }}</div>
+                    @endif
+
+                    @if (session('message_failed'))
+                        <div class="alert alert-success">{{ session('message_failed') }}</div>
+                    @endif
+
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <div class="d-flex align-items-center gap-3">
-                            <p class="mb-0">Show 10 Entries</p>
+                            <p class="mb-0">Show {{ $pembinas->count() }} Entries</p>
 
                             <a href="{{ route('pembina.create') }}" class="btn btn-primary">Create Pembina</a>
                         </div>
@@ -44,14 +52,15 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 1; $i <= 100; $i++)
+                                @foreach ($pembinas as $pembina)
                                     <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>Bejo</td>
-                                        <td>Jln. pulau teuku umar no.5 - denpasar</td>
-                                        <td>Direktur Perusahaan</td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pembina->nama_pembina }}</td>
+                                        <td>{{ $pembina->alamat }}</td>
+                                        <td>{{ $pembina->bagian_kerja }}</td>
                                         <td>
-                                            <span class="badge bg-success">Active</span>
+                                            <span
+                                                class="badge @if ($pembina->status == 'aktif') bg-success @else bg-danger @endif">{{ $pembina->status }}</span>
                                         </td>
                                         <td>
                                             <div class="dropdown">
@@ -67,7 +76,7 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endfor
+                                @endforeach
                             </tbody>
                         </table>
 

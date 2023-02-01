@@ -38,8 +38,8 @@
                                      </div>
                                  </div>
                                  <div class="flex-grow-1">
-                                     <span class="fw-semibold d-block">John Doe</span>
-                                     <small class="text-muted">Admin</small>
+                                     <span class="fw-semibold d-block">{{ Auth()->user()->nama_lengkap }}</span>
+                                     <small class="text-muted">{{ Auth()->user()->roles }}</small>
                                  </div>
                              </div>
                          </a>

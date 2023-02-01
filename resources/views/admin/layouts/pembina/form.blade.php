@@ -2,7 +2,6 @@
 
 @section('title', 'Create Data Pembina')
 
-
 @section('content')
 
     <div class="row">
@@ -11,7 +10,11 @@
 
             <div class="card">
 
-                @include('admin.layouts.pembina.createForm')
+                <div class="card-body">
+                    @if (Request()->route()->getName() == 'pembina.create')
+                        @include('admin.layouts.pembina.createForm')
+                    @endif
+                </div>
 
             </div>
 
