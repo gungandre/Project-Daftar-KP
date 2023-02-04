@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\admin\Pembina;
+use App\Http\Controllers\Controller;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Throwable;
 
 class PembinaController extends Controller
 {
@@ -16,7 +21,9 @@ class PembinaController extends Controller
     {
         $header_page = "Data Pembina";
 
-        return view('admin.layouts.pembina.index', compact('header_page'));
+        $pembinas = Pembina::toBase()->latest()->paginate(5);
+
+        return view('admin.layouts.pembina.index', compact('header_page', 'pembinas'));
     }
 
     /**
@@ -26,7 +33,9 @@ class PembinaController extends Controller
      */
     public function create()
     {
-        //
+        $header_page = "Create Pembina";
+
+        return view('admin.layouts.pembina.form', compact('header_page'));
     }
 
     /**
@@ -37,7 +46,42 @@ class PembinaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nama_pembina' => 'required|unique:pembina,nama_pembina',
+            'alamat' => 'required',
+            'bagian_kerja' => 'required',
+            'no_hp' => 'numeric|required',
+            'email' => 'unique:users,email|required|email|required',
+            'password' => 'required',
+        ]);
+
+        User::create([
+            'nama_lengkap' => $request->nama_pembina,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'roles' => 'pembina'
+        ]);
+
+        $user = Auth::user()->where('nama_lengkap', $request->nama_pembina);
+
+        if ($user->exists()) {
+
+            $getUser = $user->toBase()->first();
+
+            Pembina::create([
+                "user_id" => $getUser->id,
+                "nama_pembina" => $request->nama_pembina,
+                "alamat" => $request->alamat,
+                "bagian_kerja" => $request->bagian_kerja,
+                "no_hp" => $request->no_hp,
+                "status" => "aktif",
+                "created_at" => now()->toDateString()
+            ]);
+
+            return redirect()->route('pembina.index')->with('message_success', 'data pembina berhasil dibuat');
+        }
+
+        return redirect()->route('pembina.index')->with('message_failed', 'data pembina gagal dibuat');
     }
 
     /**
@@ -48,7 +92,6 @@ class PembinaController extends Controller
      */
     public function show(Pembina $pembina)
     {
-        //
     }
 
     /**
@@ -59,7 +102,8 @@ class PembinaController extends Controller
      */
     public function edit(Pembina $pembina)
     {
-        //
+        $header_page = "Edit Pembina";
+        return view('admin.layouts.pembina.form', compact('header_page', 'pembina'));
     }
 
     /**
@@ -71,7 +115,41 @@ class PembinaController extends Controller
      */
     public function update(Request $request, Pembina $pembina)
     {
-        //
+        $request->validate([
+            'nama_pembina' => 'required',
+            'alamat' => 'required',
+            'bagian_kerja' => 'required',
+            'no_hp' => 'numeric|required',
+            'email' => 'required|email',
+            'password_confirmation' => "confirmed",
+        ]);
+
+        $pembinaData = [
+            "nama_pembina" => $request->nama_pembina,
+            "alamat" => $request->alamat,
+            "bagian_kerja" => $request->bagian_kerja,
+            "no_hp" => $request->no_hp,
+            "status" => $request->status,
+            "updated_at" => now()->toDateString()
+        ];
+
+        $usersData = [
+            "nama_lengkap" => $pembinaData["nama_pembina"],
+            "email" => $request->email,
+        ];
+
+        if ($request->has('password')) {
+            $usersData["password"] = Hash::make($request->password);
+        }
+
+        try {
+            $pembina->update($pembinaData);
+            $pembina->user->update($usersData);
+
+            return redirect()->route('pembina.index')->with("message_success", "Update Pembina Success");
+        } catch (Throwable $th) {
+            return redirect()->route("pembina.index")->with('message_failed', $th->getMessage());
+        }
     }
 
     /**
@@ -82,6 +160,15 @@ class PembinaController extends Controller
      */
     public function destroy(Pembina $pembina)
     {
-        //
+
+        try {
+
+            $pembina->delete();
+            $pembina->user->delete();
+
+            return redirect()->route('pembina.index')->with('message_success', 'data success deleted');
+        } catch (Throwable  $th) {
+            return redirect()->route('pembina.index')->with('message_failed', $th->getMessage());
+        }
     }
 }

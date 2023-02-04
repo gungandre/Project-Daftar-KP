@@ -15,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-Route::resource('/pembina', PembinaController::class);
+Route::middleware('auth')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+    Route::middleware("roles.admin")->group(function () {
+        Route::resource('pembina', PembinaController::class);
+    });
+});
+
+require __DIR__ . '/auth.php';

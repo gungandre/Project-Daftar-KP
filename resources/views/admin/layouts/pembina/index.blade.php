@@ -6,7 +6,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-12 mb-4">
+        <div class="mb-4 col-lg-12">
 
             <div class="card">
 
@@ -14,9 +14,17 @@
 
                 <div class="card-body">
 
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <div class="d-flex align-items-center gap-3">
-                            <p class="mb-0">Show 10 Entries</p>
+                    @if (session('message_success'))
+                        <div class="alert alert-success">{{ session('message_success') }}</div>
+                    @endif
+
+                    @if (session('message_failed'))
+                        <div class="alert alert-danger">{{ session('message_failed') }}</div>
+                    @endif
+
+                    <div class="mb-4 d-flex align-items-center justify-content-between">
+                        <div class="gap-3 d-flex align-items-center">
+                            <p class="mb-0">Show {{ $pembinas->count() }} Entries</p>
 
                             <a href="{{ route('pembina.create') }}" class="btn btn-primary">Create Pembina</a>
                         </div>
@@ -32,7 +40,7 @@
 
                     <div class="table-responsive-sm">
 
-                        <table class="table table-striped">
+                        <table class="table mb-5 table-striped">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -44,32 +52,42 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @for ($i = 1; $i <= 100; $i++)
+                                @foreach ($pembinas as $pembina)
                                     <tr>
-                                        <td>{{ $i }}</td>
-                                        <td>Bejo</td>
-                                        <td>Jln. pulau teuku umar no.5 - denpasar</td>
-                                        <td>Direktur Perusahaan</td>
+                                        <td>{{ $pembinas->firstItem() + $loop->index }}</td>
+                                        <td>{{ $pembina->nama_pembina }}</td>
+                                        <td>{{ $pembina->alamat }}</td>
+                                        <td>{{ $pembina->bagian_kerja }}</td>
                                         <td>
-                                            <span class="badge bg-success">Active</span>
+                                            <span
+                                                class="badge @if ($pembina->status == 'aktif') bg-success @else bg-danger @endif">{{ $pembina->status }}</span>
                                         </td>
                                         <td>
                                             <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                <button type="button" class="p-0 btn dropdown-toggle hide-arrow"
                                                     data-bs-toggle="dropdown"><i
                                                         class="bx bx-dots-vertical-rounded"></i></button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#"><i
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('pembina.edit', $pembina->id) }}"><i
                                                             class="bx bx-edit-alt me-1"></i>Edit</a>
-                                                    <a class="dropdown-item" href="#"><i
-                                                            class="bx bx-trash me-1"></i>Delete</a>
+                                                    <form action="{{ route('pembina.destroy', $pembina->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn"
+                                                            onclick="return confirm('apakah ingin menghapus data pembina ? maka akun ini tidak akan bisa diakses lagi')"><i
+                                                                class="bx bx-trash me-1"></i>Delete</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                                @endfor
+                                @endforeach
                             </tbody>
                         </table>
+
+                        {{ $pembinas->links() }}
 
                     </div>
 
