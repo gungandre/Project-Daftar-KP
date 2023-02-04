@@ -6,7 +6,7 @@
 @section('content')
 
     <div class="row">
-        <div class="col-lg-12 mb-4">
+        <div class="mb-4 col-lg-12">
 
             <div class="card">
 
@@ -19,11 +19,11 @@
                     @endif
 
                     @if (session('message_failed'))
-                        <div class="alert alert-success">{{ session('message_failed') }}</div>
+                        <div class="alert alert-danger">{{ session('message_failed') }}</div>
                     @endif
 
-                    <div class="d-flex align-items-center justify-content-between mb-4">
-                        <div class="d-flex align-items-center gap-3">
+                    <div class="mb-4 d-flex align-items-center justify-content-between">
+                        <div class="gap-3 d-flex align-items-center">
                             <p class="mb-0">Show {{ $pembinas->count() }} Entries</p>
 
                             <a href="{{ route('pembina.create') }}" class="btn btn-primary">Create Pembina</a>
@@ -40,7 +40,7 @@
 
                     <div class="table-responsive-sm">
 
-                        <table class="table table-striped">
+                        <table class="table mb-5 table-striped">
                             <thead>
                                 <tr>
                                     <td>No</td>
@@ -54,7 +54,7 @@
                             <tbody>
                                 @foreach ($pembinas as $pembina)
                                     <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pembinas->firstItem() + $loop->index }}</td>
                                         <td>{{ $pembina->nama_pembina }}</td>
                                         <td>{{ $pembina->alamat }}</td>
                                         <td>{{ $pembina->bagian_kerja }}</td>
@@ -64,14 +64,21 @@
                                         </td>
                                         <td>
                                             <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                <button type="button" class="p-0 btn dropdown-toggle hide-arrow"
                                                     data-bs-toggle="dropdown"><i
                                                         class="bx bx-dots-vertical-rounded"></i></button>
                                                 <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="#"><i
+                                                    <a class="dropdown-item"
+                                                        href="{{ route('pembina.edit', $pembina->id) }}"><i
                                                             class="bx bx-edit-alt me-1"></i>Edit</a>
-                                                    <a class="dropdown-item" href="#"><i
-                                                            class="bx bx-trash me-1"></i>Delete</a>
+                                                    <form action="{{ route('pembina.destroy', $pembina->id) }}"
+                                                        method="post">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button type="submit" class="btn"
+                                                            onclick="return confirm('apakah ingin menghapus data pembina ? maka akun ini tidak akan bisa diakses lagi')"><i
+                                                                class="bx bx-trash me-1"></i>Delete</button>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </td>
@@ -79,6 +86,8 @@
                                 @endforeach
                             </tbody>
                         </table>
+
+                        {{ $pembinas->links() }}
 
                     </div>
 
