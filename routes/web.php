@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\admin\PembinaController;
+use App\Http\Controllers\MagangController;
+use App\Http\Controllers\MagangRequestController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +21,16 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+    Route::resource('magang', MagangController::class);
+
     Route::middleware("roles.admin")->group(function () {
         Route::resource('pembina', PembinaController::class);
     });
 });
+Route::get('reques-login', [MagangRequestController::class, 'index'])->name('magang.request');
 
+Auth::routes([
+    'register' => false, // Registration Routes...
+    'verify' => false, // Email Verification Routes...
+]);
 require __DIR__ . '/auth.php';

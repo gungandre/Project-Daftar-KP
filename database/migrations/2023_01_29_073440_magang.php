@@ -22,7 +22,7 @@ class Magang extends Migration
             $table->longText('alamat');
             $table->string('no_hp');
             $table->string('email');
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('instansi_pendidikan');
             $table->string('jurusan');
             $table->date('mulai_magang');
