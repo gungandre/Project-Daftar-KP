@@ -9,7 +9,7 @@
                 </div>
                 <div class="col">
                     <div class="card-body">
-                        <form class="form-control">
+                        <form class="form-control" action="{{route('magang.storerequest')}}" method="POST" enctype="multipart/form-data">
                             <!-- 2 column grid layout with text inputs for the first and last names -->
                             <h1 class="text-center">Input Form Magang</h1>
                             <div class="row mb-4">
@@ -29,7 +29,7 @@
 
                             <!-- Text input -->
                             <div class="form-outline mb-4">
-                                <input type="text" id="form6Example3" class="form-control" />
+                                <input type="text" id="form6Example3" name="nama_lengkap" class="form-control" />
                                 <label class="form-label" for="form6Example3">Nama Lengkap</label>
                             </div>
 

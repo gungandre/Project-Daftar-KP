@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 Route::get('reques-login', [MagangRequestController::class, 'index'])->name('magang.request');
+Route::post('request-store',[MagangRequestController::class,'requestForm'])->name('magang.storerequest');
 
 Auth::routes([
     'register' => false, // Registration Routes...
