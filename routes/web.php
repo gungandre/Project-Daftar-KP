@@ -23,14 +23,19 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth', 'IsActive')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::resource('userData',AbsenController::class);
+    Route::middleware("roles.pembina")->group(function () {
+        Route::resource('magang', MagangController::class);
+        Route::put('magang/{magang}/change-status', [MagangController::class, 'changeStatus'])->name('magang.change-status');
+    });
 
     Route::middleware("roles.admin")->group(function () {
         Route::resource('pembina', PembinaController::class);
+        Route::get('magang/{magang}/pembina', [MagangController::class, 'pembina'])->name('magang.pembina');
+        Route::put('magang/{magang}/pembina', [MagangController::class, 'pembinaUpdate'])->name('magang.pembina-add');
     });
 });
 
-Route::get('reques-login', [MagangRequestController::class, 'index'])->name('magang.request');
+Route::get('daftar-magang', [MagangRequestController::class, 'index'])->name('magang.request');
 Route::post('request-store', [MagangRequestController::class, 'requestForm'])->name('magang.storerequest');
 
 Auth::routes([

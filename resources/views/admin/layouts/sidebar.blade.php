@@ -18,7 +18,7 @@
               <span class="menu-header-text">Pages</span>
           </li>
 
-          @if (Auth::user()->roles == 'admin')
+          @if (Auth::user()->roles == 'admin' || Auth::user()->roles == 'pembina')
               @include('admin.layouts.sidebar-menu.admin-menu')
           @endif
 

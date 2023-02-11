@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class RolesAdmin
+class isPembina
 {
     /**
      * Handle an incoming request.
@@ -17,9 +17,10 @@ class RolesAdmin
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->roles == 'admin') {
+        if (Auth::user()->roles == 'pembina' || Auth::user()->roles == 'admin') {
             return $next($request);
         }
-        return abort(403);
+
+        return abort('403');
     }
 }

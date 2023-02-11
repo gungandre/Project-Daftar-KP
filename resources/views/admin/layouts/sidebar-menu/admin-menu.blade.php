@@ -1,11 +1,13 @@
   <li class="menu-item @if (Request()->route()->getName() == 'pembina.index') active @endif">
-      <a href="{{ route('pembina.index') }}" class="menu-link">
-          <i class="menu-icon tf-icons bx bx-group"></i>
-          <div data-i18n="Analytics">Data Pembina</div>
-      </a>
+      @if (Auth::user()->roles == 'admin')
+          <a href="{{ route('pembina.index') }}" class="menu-link">
+              <i class="menu-icon tf-icons bx bx-group"></i>
+              <div data-i18n="Analytics">Data Pembina</div>
+          </a>
+      @endif
   </li>
   <li class="menu-item">
-      <a href="#" class="menu-link">
+      <a href="{{ route('magang.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bxs-user-badge"></i>
           <div data-i18n="Analytics">Data Magang</div>
       </a>
