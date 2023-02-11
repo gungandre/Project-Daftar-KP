@@ -16,7 +16,7 @@ class Magang extends Migration
         Schema::create('magang', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id')->unique();
-            $table->unsignedBigInteger('id_pembina');
+            $table->unsignedBigInteger('id_pembina')->nullable();
             $table->string('nama_lengkap');
             $table->longText('nim_nis');
             $table->longText('alamat');
@@ -25,10 +25,10 @@ class Magang extends Migration
             $table->string('password')->nullable();
             $table->string('instansi_pendidikan');
             $table->string('jurusan');
-            $table->date('mulai_magang');
-            $table->date('selesai_magang');
+            $table->date('mulai_magang')->nullable();
+            $table->date('selesai_magang')->nullable();
             $table->string('foto');
-            $table->string('surat_magang');
+            $table->string('surat_magang')->nullable();
             $table->string('status');
             $table->foreign('id_pembina')->references('id')->on('pembina');
             $table->foreign('user_id')->references('id')->on('users');

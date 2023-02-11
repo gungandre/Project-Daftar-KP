@@ -12,7 +12,12 @@ class Pembina extends Model
 
     protected $table = "pembina";
     public $fillable = [
-        "user_id", "nama_pembina", "alamat", "bagian_kerja", "no_hp", "status"
+        "user_id",
+        "nama_pembina",
+        "alamat",
+        "bagian_kerja",
+        "no_hp",
+        "status"
     ];
     public $timestamps = false;
 

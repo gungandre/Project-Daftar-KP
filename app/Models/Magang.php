@@ -18,7 +18,7 @@ class Magang extends Model
         'alamat',
         'no_hp',
         'email',
-        'password',
+        'instansi_pendidikan',
         'jurusan',
         'mulai_magang',
         'selesai_magang',
@@ -26,6 +26,5 @@ class Magang extends Model
         'surat_magang',
         'status',
         'id_pembina',
-        'user_id'
     ];
 }

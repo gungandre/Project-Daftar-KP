@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'IsActive')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::resource('magang', MagangController::class);
@@ -28,7 +28,7 @@ Route::middleware('auth')->group(function () {
     });
 });
 Route::get('reques-login', [MagangRequestController::class, 'index'])->name('magang.request');
-Route::post('request-store',[MagangRequestController::class,'requestForm'])->name('magang.storerequest');
+Route::post('request-store', [MagangRequestController::class, 'requestForm'])->name('magang.storerequest');
 
 Auth::routes([
     'register' => false, // Registration Routes...
