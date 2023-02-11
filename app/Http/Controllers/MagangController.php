@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\admin\Pembina as AdminPembina;
+use App\Models\User;
 use App\Models\Magang;
 use Illuminate\Http\Request;
+use Pembina;
 
 class MagangController extends Controller
 {
@@ -14,7 +17,29 @@ class MagangController extends Controller
      */
     public function index()
     {
-        //
+        $header_page = "Data Magang";
+
+        $magangs = Magang::with(['pembina'])->latest()->paginate(5);
+
+        return view('admin.layouts.magangs.index', compact('magangs', 'header_page'));
+    }
+
+    public function pembina(Magang $magang)
+    {
+        $header_page = "Tambah Pembina";
+
+        $pembina = AdminPembina::toBase()->get();
+
+        return view('admin.layouts.magangs.pembina', compact('header_page', 'pembina', 'magang'));
+    }
+
+    public function pembinaUpdate(Request $request, Magang $magang)
+    {
+        $data = $request->all();
+
+        $magang->update(["id_pembina" => $data['nama_pembina']]);
+
+        return redirect()->route('magang.index')->with("message_success", "Pembina Magang berhasil ditambahkan");
     }
 
     /**
@@ -57,7 +82,8 @@ class MagangController extends Controller
      */
     public function edit(Magang $magang)
     {
-        //
+        $header_page = "Change Status Magang";
+        return view('admin.layouts.magangs.edit-status', compact('header_page', 'magang'));
     }
 
     /**
@@ -70,6 +96,16 @@ class MagangController extends Controller
     public function update(Request $request, Magang $magang)
     {
         //
+    }
+
+    public function changeStatus(Request $request, Magang $magang)
+    {
+        $data = $request->all();
+
+        $magang->update(['status' => $data['status']]);
+        $magang->user->update(['status' => $data['status']]);
+
+        return redirect()->route('magang.index')->with("message_success", "Status Magang Telah Di Approve");
     }
 
     /**

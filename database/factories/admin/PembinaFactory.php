@@ -23,7 +23,7 @@ class PembinaFactory extends Factory
             "alamat" => $this->faker->address(),
             "bagian_kerja" => $this->faker->jobTitle(),
             "no_hp" => $this->faker->phoneNumber(),
-            "status" => "aktif"
+            "status" => "active"
         ];
     }
 }
