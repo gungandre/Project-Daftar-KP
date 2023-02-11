@@ -24,7 +24,6 @@
 
                     <div class="mb-4 d-flex align-items-center justify-content-between">
                         <div class="gap-3 d-flex align-items-center">
-                            <p class="mb-0">Show {{ $pembinas->count() }} Entries</p>
 
                             <a href="{{ route('pembina.create') }}" class="btn btn-primary">Create Pembina</a>
                         </div>
@@ -60,7 +59,7 @@
                                         <td>{{ $pembina->bagian_kerja }}</td>
                                         <td>
                                             <span
-                                                class="badge @if ($pembina->status == 'aktif') bg-success @else bg-danger @endif">{{ $pembina->status }}</span>
+                                                class="badge @if ($pembina->status == 'active') bg-success @else bg-danger @endif">{{ $pembina->status }}</span>
                                         </td>
                                         <td>
                                             <div class="dropdown">
@@ -87,7 +86,11 @@
                             </tbody>
                         </table>
 
-                        {{ $pembinas->links() }}
+                        <div class="d-flex align-items-baseline justify-content-between">
+                            <p class="mb-0">Show {{ $pembinas->firstItem() }} to {{ $pembinas->lastItem() }} of total
+                                {{ $pembinas->total() }} entries</p>
+                            {{ $pembinas->links() }}
+                        </div>
 
                     </div>
 
