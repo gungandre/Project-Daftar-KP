@@ -22,6 +22,10 @@
               @include('admin.layouts.sidebar-menu.admin-menu')
           @endif
 
+          @if (Auth::user()->roles == 'user')
+              @include('admin.layouts.sidebar-menu.user-menu')
+          @endif
+
       </ul>
   </aside>
   <!-- / Menu -->

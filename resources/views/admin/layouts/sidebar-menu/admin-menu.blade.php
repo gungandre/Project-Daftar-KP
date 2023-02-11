@@ -22,3 +22,10 @@
           <div data-i18n="Analytics">Nilai</div>
       </a>
   </li>
+  <li class="menu-item">
+    <a href="" class="menu-link">
+        <i class='bx bxs-user-pin'></i>
+        User Magang
+    </a>
+
+  </li>

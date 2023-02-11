@@ -55,6 +55,6 @@ class MagangRequestController extends Controller
         );
 
         ModelsMagang::create($magang);
-        return redirect()->route('login');
+        return view('auth.waitform')->with('message','Data created !')->with('message','Data created !');
     }
 }

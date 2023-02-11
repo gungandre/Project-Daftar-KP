@@ -16,7 +16,10 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
         rel="stylesheet" />
-
+ <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="assets/vendor/fonts/boxicons.css" />
+    <link href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.css" />
     <!-- Icons. Uncomment required icon fonts -->
     <link rel="stylesheet" href="/assets/vendor/fonts/boxicons.css" />
 
@@ -41,6 +44,14 @@
 </head>
 
 <body>
+    @if($errors->any())
+    @foreach ($errors->all() as $error)
+    <span class="error" data-message="{{$error}}"></span>
+    @endforeach
+    @endif
+    @if (session('message'))
+    <span class="success" data-message="{{session('message')}}"></span>
+    @endif
 
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
@@ -92,6 +103,11 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('js/sweetalert.js')}}"></script>
 </body>
 
 </html>
