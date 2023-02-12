@@ -9,11 +9,16 @@ class Absen extends Model
 {
     use HasFactory;
     protected $table = 'absensi';
-    protected $fillable=[
+    protected $fillable = [
         'user_id',
         'nama_lengkap',
         'instansi_pendidikan',
         'tanggal',
         'kehadiran'
     ];
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

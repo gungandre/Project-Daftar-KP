@@ -13,7 +13,7 @@
       </a>
   </li>
   <li class="menu-item">
-      <a href="#" class="menu-link">
+      <a href="{{ route('kegiatan-magang.index') }}" class="menu-link">
           <i class="menu-icon tf-icons bx bxs-book-bookmark"></i>
           <div>Kegiatan Magang</div>
       </a>
