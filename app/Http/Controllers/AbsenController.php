@@ -37,9 +37,8 @@ class AbsenController extends Controller
                 ->make(true);
         } else {
             $data = Absen::orderBy('created_at', 'desc');
-            return view('magang.absen.index', compact('header_page','data'));
+            return view('magang.absen.index', compact('header_page', 'data'));
         }
-
     }
 
     /**
@@ -50,7 +49,7 @@ class AbsenController extends Controller
     public function create()
     {
         $header_page = "dashboard Input Absen";
-        return view('magang.absen.create',compact('header_page'));
+        return view('magang.absen.create', compact('header_page'));
     }
 
     /**
@@ -65,8 +64,8 @@ class AbsenController extends Controller
         $file = date('YmdHi') . $filemagang->getClientOriginalName();
         $filemagang->move(public_path('file'), $filemagang);
         $tidak = 'not yet received';
-        $kegiatan = New Kegiatan();
-        $kegiatan->user_id =Auth::user()->id;
+        $kegiatan = new Kegiatan();
+        $kegiatan->user_id = Auth::user()->id;
         $kegiatan->nama_lengkap = $request->nama_lengkap;
         $kegiatan->instansi_pendidikan = $request->instansi_pendidikan;
         $kegiatan->tanggal = $request->tanggal;
@@ -78,14 +77,14 @@ class AbsenController extends Controller
 
 
         $absen = [
-            'user_id'=>Auth::user()->id,
-            'nama_lengkap'=>$request->nama_lengkap,
-            'instansi_pendidikan'=>$request->instansi_pendidikan,
-            'tanggal'=>$request->tanggal,
-            'kehadiran'=>$tidak
+            'user_id' => Auth::user()->id,
+            'nama_lengkap' => $request->nama_lengkap,
+            'instansi_pendidikan' => $request->instansi_pendidikan,
+            'tanggal' => $request->tanggal,
+            'kehadiran' => $tidak
         ];
-         Absen::create($absen);
-         Alert::success('Success','Tunggu update');
+        Absen::create($absen);
+        Alert::success('Success', 'Tunggu update');
         return redirect()->route('userData.index');
     }
 
