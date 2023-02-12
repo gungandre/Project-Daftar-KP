@@ -29,7 +29,10 @@
                         </div>
 
                         <div class="form-group">
-                            <form action="#" method="get">
+                            <form action="{{ route('pembina.index') }}" method="get">
+
+                                @csrf
+
                                 <input type="text" name="search" id="search" class="form-control"
                                     placeholder="search pembina">
                             </form>

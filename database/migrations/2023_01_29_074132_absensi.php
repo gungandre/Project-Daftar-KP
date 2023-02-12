@@ -15,7 +15,7 @@ class Absensi extends Migration
     {
         Schema::create('absensi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->references('id')->on('users');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->string('nama_lengkap');
             $table->string('instansi_pendidikan');
             $table->date('tanggal');

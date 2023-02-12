@@ -17,11 +17,11 @@ class PembinaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $header_page = "Data Pembina";
 
-        $pembinas = Pembina::toBase()->latest()->paginate(5);
+        $pembinas = ($request->has('search')) ? Pembina::where('nama_pembina', 'like', "%" . $request->search . "%")->latest()->paginate(3)->appends(['search' => $request->search]) : Pembina::toBase()->latest()->paginate(5);
 
         return view('admin.layouts.pembina.index', compact('header_page', 'pembinas'));
     }
@@ -59,7 +59,8 @@ class PembinaController extends Controller
             'nama_lengkap' => $request->nama_pembina,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'roles' => 'pembina'
+            'roles' => 'pembina',
+            'status' => 'active'
         ]);
 
         $user = Auth::user()->where('nama_lengkap', $request->nama_pembina);
@@ -74,14 +75,14 @@ class PembinaController extends Controller
                 "alamat" => $request->alamat,
                 "bagian_kerja" => $request->bagian_kerja,
                 "no_hp" => $request->no_hp,
-                "status" => "aktif",
+                "status" => "active",
                 "created_at" => now()->toDateString()
             ]);
 
-            return redirect()->route('pembina.index')->with('message_success', 'data pembina berhasil dibuat');
+            return redirect()->route('pembina.index')->with('message', 'data pembina berhasil dibuat');
         }
 
-        return redirect()->route('pembina.index')->with('message_failed', 'data pembina gagal dibuat');
+        return redirect()->route('pembina.index')->with('message', 'data pembina gagal dibuat');
     }
 
     /**
@@ -146,9 +147,9 @@ class PembinaController extends Controller
             $pembina->update($pembinaData);
             $pembina->user->update($usersData);
 
-            return redirect()->route('pembina.index')->with("message_success", "Update Pembina Success");
+            return redirect()->route('pembina.index')->with("message", "Update Pembina Success");
         } catch (Throwable $th) {
-            return redirect()->route("pembina.index")->with('message_failed', $th->getMessage());
+            return redirect()->route("pembina.index")->with('message', $th->getMessage());
         }
     }
 
@@ -166,9 +167,9 @@ class PembinaController extends Controller
             $pembina->delete();
             $pembina->user->delete();
 
-            return redirect()->route('pembina.index')->with('message_success', 'data success deleted');
+            return redirect()->route('pembina.index')->with('message', 'data success deleted');
         } catch (Throwable  $th) {
-            return redirect()->route('pembina.index')->with('message_failed', $th->getMessage());
+            return redirect()->route('pembina.index')->with('message', $th->getMessage());
         }
     }
 }
