@@ -89,7 +89,7 @@ class AbsenController extends Controller
         ];
         Absen::create($absen);
         Alert::success('Success', 'Tunggu update');
-        return redirect()->route('user-absen.index');
+        return redirect()->route('userData.index');
     }
 
     /**

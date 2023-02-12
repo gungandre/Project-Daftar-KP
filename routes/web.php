@@ -24,7 +24,7 @@ use App\Http\Controllers\admin\DashboardController;
 Route::middleware('auth', 'IsActive')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
-
+    Route::resource('userData', AbsenController::class);
     Route::middleware("roles.pembina")->group(function () {
         Route::resource('magang', MagangController::class);
         Route::put('magang/{magang}/change-status', [MagangController::class, 'changeStatus'])->name('magang.change-status');
