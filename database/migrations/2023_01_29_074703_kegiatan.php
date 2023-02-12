@@ -23,6 +23,7 @@ class Kegiatan extends Migration
             $table->string('file_kegiatan');
             $table->string('logbook_kegiatan');
             $table->string('status');
+            $table->timestamps();
         });
     }
 
