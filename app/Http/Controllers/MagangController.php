@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\admin\Pembina as AdminPembina;
+use Pembina;
 use App\Models\User;
 use App\Models\Magang;
 use Illuminate\Http\Request;
-use Pembina;
+use Illuminate\Support\Facades\Auth;
+use App\Models\admin\Pembina as AdminPembina;
 
 class MagangController extends Controller
 {
@@ -15,11 +16,16 @@ class MagangController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $header_page = "Data Magang";
 
-        $magangs = Magang::with(['pembina'])->latest()->paginate(5);
+        if ($request->has('search')) {
+
+            $magangs = (Auth::user()->roles == 'admin') ? Magang::with(["pembina"])->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina"])->where("id_pembina", Auth::user()->id)->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : "");
+        } else {
+            $magangs = (Auth::user()->roles == 'admin') ? Magang::with(['pembina'])->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina"])->where("id_pembina", Auth::user()->id)->latest()->paginate(5) : "");
+        }
 
         return view('admin.layouts.magangs.index', compact('magangs', 'header_page'));
     }
