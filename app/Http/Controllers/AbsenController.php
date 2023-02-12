@@ -26,11 +26,12 @@ class AbsenController extends Controller
                 ->addColumn('action', function ($data) {
                     $action = '';
 
-                    $action .= '<a href="' . route('userData.edit', $data->id) . '" class="btn btn-white btn-sm" data-placement="bottom" data-bs-toggle="tooltip" data-placement="bottom" title="Edit" data-original-title="Edit">Edit</a>';
+                    // $action .= '<a href="' . route('user-absen.edit', $data->id) . '" class="btn btn-white btn-sm" data-placement="bottom" data-bs-toggle="tooltip" data-placement="bottom" title="Edit" data-original-title="Edit">Edit</a>';
 
-                    $action .= '<button class="btn btn-danger ml-1 btn-sm delete-item" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Delete" data-url="' . route('userData.destroy', $data->id) . '" data-id="' . $data->id . '">
-                                        Delete
-                                    </button>';
+                    // $action .= '<button class="btn btn-danger ml-1 btn-sm delete-item" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Delete" data-url="' . route('user-absen.destroy', $data->id) . '" data-id="' . $data->id . '">
+                    //                     Delete
+                    //                 </button>';
+
                     return $action;
                 })
                 ->rawColumns(['action'])
@@ -60,9 +61,12 @@ class AbsenController extends Controller
      */
     public function store(Request $request)
     {
-        $filemagang = $request->file('file_kegiatan');
-        $file = date('YmdHi') . $filemagang->getClientOriginalName();
-        $filemagang->move(public_path('file'), $filemagang);
+        if ($request->has('file_kegiatan')) {
+            $fileupload = $request->file('file_kegiatan');
+            $file = date('YmdHi') . "-" . $fileupload->getClientOriginalName();
+            $fileupload->move('file', $file);
+        }
+
         $tidak = 'not yet received';
         $kegiatan = new Kegiatan();
         $kegiatan->user_id = Auth::user()->id;
@@ -85,7 +89,7 @@ class AbsenController extends Controller
         ];
         Absen::create($absen);
         Alert::success('Success', 'Tunggu update');
-        return redirect()->route('userData.index');
+        return redirect()->route('user-absen.index');
     }
 
     /**

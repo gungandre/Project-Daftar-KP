@@ -42,13 +42,13 @@
 </head>
 
 <body>
-    @if($errors->any())
-    @foreach ($errors->all() as $error)
-    <span class="error" data-message="{{$error}}"></span>
-    @endforeach
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            <span class="error" data-message="{{ $error }}"></span>
+        @endforeach
     @endif
     @if (session('message'))
-    <span class="success" data-message="{{session('message')}}"></span>
+        <span class="success" data-message="{{ session('message') }}"></span>
     @endif
 
     <div class="container-xxl">
@@ -87,7 +87,7 @@
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{asset('js/sweetalert.js')}}"></script>
+    <script src="{{ asset('js/sweetalert.js') }}"></script>
 </body>
 
 

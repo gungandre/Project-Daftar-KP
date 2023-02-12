@@ -19,4 +19,14 @@ class Kegiatan extends Model
         'logbook_kegiatan',
         'status'
     ];
+
+    public function User()
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function getRouteKeyName()
+    {
+        return 'tanggal';
+    }
 }
