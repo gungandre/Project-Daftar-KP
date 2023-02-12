@@ -20,6 +20,7 @@ class Absensi extends Migration
             $table->string('instansi_pendidikan');
             $table->date('tanggal');
             $table->string('kehadiran');
+            $table->timestamps();
         });
     }
 

@@ -23,6 +23,7 @@ class Nilai extends Migration
             $table->string('nilai');
             $table->string('keterangan');
             $table->string('ubah_nilai');
+            $table->timestamps();
         });
     }
 

@@ -17,9 +17,13 @@ class IsActice
      */
     public function handle(Request $request, Closure $next)
     {
-        if (Auth::user()->status != "active") {
-            return redirect('login');
+        if ($request->user()->status != 'active') {
+            Auth::guard('web')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+            return redirect()->route('login')->with('error', 'user is inactive');
         }
+
         return $next($request);
     }
 }

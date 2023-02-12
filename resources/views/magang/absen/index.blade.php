@@ -1,35 +1,48 @@
 @extends('admin.layouts.app')
 @section('title', 'Pembina')
 @section('content')
-
-<table class="table .table-striped">
+<div class="card p-4">
+    <div class="card-header">
+    </div>
+<div class="card-body">
+<table class="table table-striped" id="datatable"  >
     <thead>
       <tr>
-        <th scope="col">#</th>
-        <th scope="col">First</th>
-        <th scope="col">Last</th>
-        <th scope="col">Handle</th>
+        <th scope="col">No</th>
+        <th scope="col">Nama Lengkap</th>
+        <th scope="col">Instansi Pendidikan</th>
+        <th scope="col">Tanggal</th>
+        <th scope="col">Kehadiran</th>
+        <th scope="col">Aksi</th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">1</th>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>@mdo</td>
-      </tr>
-      <tr>
-        <th scope="row">2</th>
-        <td>Jacob</td>
-        <td>Thornton</td>
-        <td>@fat</td>
-      </tr>
-      <tr>
-        <th scope="row">3</th>
-        <td colspan="2">Larry the Bird</td>
-        <td>@twitter</td>
-      </tr>
     </tbody>
   </table>
+</div>
+</div>
 
 @endsection
+@push('script')
+<script type="text/javascript">
+    $(document).ready(function(){
+        dataTable = $("#datatable").DataTable({
+            ajax: "{{route('userData.index')}}?type=datatable",
+            processing: true,
+            orderable: true,
+            autoWidth: false,
+            order: [[ 1, "asc" ]],
+            columns: [
+                { data: "user_id", name: "user_id", orderable: true },
+                { data: "nama_lengkap", name: "nama_lengkap", orderable: true },
+                { data: "instansi_pendidikan", name: "instansi_pendidikan", orderable: true },
+                { data: "tanggal", name: "tanggal", orderable: true },
+                { data: "kehadiran", name: "kehadiran", orderable: true },
+                { data: "action", name: "action", orderable: false },
+            ]
+        });
+    });
+</script>
+
+
+@endpush
