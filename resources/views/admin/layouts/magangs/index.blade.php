@@ -19,6 +19,23 @@
                         <div class="alert alert-danger">{{ session('message_failed') }}</div>
                     @endif
 
+                    <div class="row">
+                        <div class="col-lg-6">
+
+                            <div class="form-group mb-3">
+                                <form action="{{ route('magang.index') }}" method="get">
+
+                                    @csrf
+
+                                    <input type="text" name="search" id="search" class="form-control"
+                                        placeholder="search magang with name">
+                                </form>
+                            </div>
+
+                        </div>
+                    </div>
+
+
                     <div class="table-responsive-sm">
 
                         <table class="table mb-5 table-striped">

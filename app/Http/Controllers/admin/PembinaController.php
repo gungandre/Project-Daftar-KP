@@ -17,11 +17,11 @@ class PembinaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $header_page = "Data Pembina";
 
-        $pembinas = Pembina::toBase()->latest()->paginate(5);
+        $pembinas = ($request->has('search')) ? Pembina::where('nama_pembina', 'like', "%" . $request->search . "%")->latest()->paginate(3)->appends(['search' => $request->search]) : Pembina::toBase()->latest()->paginate(5);
 
         return view('admin.layouts.pembina.index', compact('header_page', 'pembinas'));
     }
