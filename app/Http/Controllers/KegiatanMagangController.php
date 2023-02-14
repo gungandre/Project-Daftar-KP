@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Absensi;
 use App\Models\User;
 use App\Models\Absen;
+use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 use App\Models\KegiatanMagang;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +21,9 @@ class KegiatanMagangController extends Controller
     {
         $header_page = "kegiatan magang";
 
-        $absens = User::with(['Absensi', 'KegiatanMagang'])->withExists(['Absensi', 'KegiatanMagang'])->where('roles', 'user')->paginate(10);
+        $absens = Kegiatan::with(['user' => function ($query) {
+            return $query->where('roles', 'user');
+        }])->latest()->paginate(5);
 
         return view('admin.layouts.kegiatanMagang.index', compact('header_page', 'absens'));
     }
@@ -75,7 +79,8 @@ class KegiatanMagangController extends Controller
      */
     public function edit(KegiatanMagang $kegiatanMagang)
     {
-        //
+        $header_page = "Approve Absensi";
+        return view('admin.layouts.kegiatanMagang.approve-absen', compact('kegiatanMagang', 'header_page'));
     }
 
     /**
@@ -87,7 +92,9 @@ class KegiatanMagangController extends Controller
      */
     public function update(Request $request, KegiatanMagang $kegiatanMagang)
     {
-        //
+        $kegiatanMagang->update(['status' => $request->status]);
+
+        return redirect()->route('kegiatan-magang.index')->with('message', 'Status Absensi Berhasil Diperbaharui');
     }
 
     /**
