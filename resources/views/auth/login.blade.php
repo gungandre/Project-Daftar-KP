@@ -10,12 +10,6 @@
             </a>
         </div>
 
-        @if ($errors->all())
-            @foreach ($errors->all() as $error)
-                <div class="alert alert-danger">{{ $error }}</div>
-            @endforeach
-        @endif
-
         <form id="formAuthentication" class="mb-3" action="{{ route('login') }}" method="POST">
             @csrf
 
