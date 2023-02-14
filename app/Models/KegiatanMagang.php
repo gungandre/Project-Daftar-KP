@@ -10,9 +10,12 @@ class KegiatanMagang extends Model
     use HasFactory;
 
     protected $table = "kegiatan";
+    protected $fillable = [
+        "status"
+    ];
 
-    public function getRouteKeyName()
+    public function User()
     {
-        return 'tanggal';
+        return $this->hasOne(User::class, 'user_id', 'id');
     }
 }

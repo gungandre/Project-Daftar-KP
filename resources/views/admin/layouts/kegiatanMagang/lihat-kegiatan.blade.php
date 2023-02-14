@@ -29,6 +29,18 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="tanggal" class="form-label">Kehadiran</label>
+                        <input type="text" name="tanggal" id="tanggal" value="{{ $kegiatanMagang->kehadiran }}"
+                            class="form-control" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="">Status Approve</label>
+                        <input type="text" name="" id="" class="form-control"
+                            value="{{ $kegiatanMagang->status }}" readonly>
+                    </div>
+
+                    <div class="mb-3">
                         <label for="" class="form-label">File Kegiatan</label>
                         <a class="d-block"
                             href="{{ route('kegiatan-magang.download-pdf', ['file' => $kegiatanMagang->file_kegiatan]) }}">{{ $kegiatanMagang->file_kegiatan }}</a>
