@@ -5,17 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class KegiatanMagang extends Model
+class Nilai extends Model
 {
     use HasFactory;
 
-    protected $table = "kegiatan";
+    protected $table = "nilai";
     protected $fillable = [
-        "status"
+        'magang_id',
+        'nilai',
+        'keterangan'
     ];
 
-    public function User()
+    public function magang()
     {
-        return $this->hasOne(User::class, 'user_id', 'id');
+        return $this->belongsTo(Magang::class);
     }
 }

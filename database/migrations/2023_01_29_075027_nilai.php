@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Magang;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -15,14 +16,10 @@ class Nilai extends Migration
     {
         Schema::create('nilai', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->unique()->references('id')->on('users');
-            $table->string('nama_magang');
-            $table->string('instansi_pendidikan');
-            $table->date('mulai_magang');
-            $table->date('selesai_magang');
-            $table->string('nilai');
-            $table->string('keterangan');
-            $table->string('ubah_nilai');
+            $table->foreignIdFor(Magang::class);
+            $table->string('nilai')->nullable();
+            $table->string('keterangan')->nullable();
+            $table->string('ubah_nilai')->nullable();
             $table->timestamps();
         });
     }
