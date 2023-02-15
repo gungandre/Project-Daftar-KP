@@ -41,6 +41,7 @@ Route::middleware('auth', 'IsActive')->group(function () {
     });
 
     Route::middleware("roles.user")->group(function () {
+        Route::resource('nilai', NilaiController::class);
         Route::resource('user-absen', AbsenController::class);
     });
 });

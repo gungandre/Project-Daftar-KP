@@ -5,7 +5,7 @@
 @section('content')
     <div class="row">
         <div class="col-lg-12 mb-4 order-0">
-            @if (null === ($data ?? null) && Auth::user()->roles == 'user')
+            @if (Auth::user()->roles == 'user' && $data->id_pembina == null)
                 <div class="card">
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-7">
