@@ -3,22 +3,18 @@
 @section('title', 'dashboard menu')
 
 @section('content')
-
     <div class="row">
         <div class="col-lg-12 mb-4 order-0">
+            @if ($data->id_pembina == null && Auth::user()->roles == 'user')
             <div class="card">
                 <div class="d-flex align-items-end row">
                     <div class="col-sm-7">
                         <div class="card-body">
                             <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
                             <p class="mb-4">
-                                You have done <span class="fw-bold">72%</span> more sales today. Check
-                                your new badge in
-                                your profile.
+                                Kamu Harus mengupdate Data Diri dan <span class="fw-bold">Password</span> Agar lebih aman
                             </p>
-
-                            <a href="javascript:;" class="btn btn-sm btn-outline-primary">View
-                                Badges</a>
+                            <a href="" class="btn btn-sm btn-outline-primary">Update Profile & Password?</a>
                         </div>
                     </div>
                     <div class="col-sm-5 text-center text-sm-left">
@@ -28,6 +24,18 @@
                                 data-app-light-img="illustrations/man-with-laptop-light.png" />
                         </div>
                     </div>
+                </div>
+            </div>
+            @endif
+            <div class="card p-2 my-2">
+                <div class="row">
+                    @if (Auth::user()->roles == 'admin' )
+                        @include('admin.layouts.dashboard.admin-dashboard')
+                    @elseif (Auth::user()->roles == 'pembina')
+                        @include('admin.layouts.dashboard.pembina-dashboard')
+                    @else
+                        @include('admin.layouts.dashboard.user-dashboard')
+                    @endif
                 </div>
             </div>
         </div>
