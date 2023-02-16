@@ -24,6 +24,7 @@ use App\Http\Controllers\NilaiController;
 
 Route::middleware('auth', 'IsActive')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('nilai', NilaiController::class);
 
     Route::resource('userData', AbsenController::class);
     Route::middleware("roles.pembina")->group(function () {
@@ -37,11 +38,9 @@ Route::middleware('auth', 'IsActive')->group(function () {
         Route::get('kegiatan-magang/{file}/download', [KegiatanMagangController::class, 'downloadPDF'])->name('kegiatan-magang.download-pdf');
         Route::get('magang/{magang}/pembina', [MagangController::class, 'pembina'])->name('magang.pembina');
         Route::put('magang/{magang}/pembina', [MagangController::class, 'pembinaUpdate'])->name('magang.pembina-add');
-        Route::resource('nilai', NilaiController::class);
     });
 
     Route::middleware("roles.user")->group(function () {
-        Route::resource('nilai', NilaiController::class);
         Route::resource('user-absen', AbsenController::class);
     });
 });

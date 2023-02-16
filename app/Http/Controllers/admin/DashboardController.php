@@ -25,6 +25,6 @@ class DashboardController extends Controller
             $data = Magang::tobase()->paginate('8');
         }
 
-        return view('admin.dashboard', compact('header_page', 'data', 'user'));
+        return view('admin.dashboard', compact('header_page', 'data'));
     }
 }
