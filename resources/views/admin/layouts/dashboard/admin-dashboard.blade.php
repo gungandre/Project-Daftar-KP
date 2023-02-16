@@ -40,7 +40,7 @@
                         <td>{{ $magang->jurusan }}</td>
                         <td>{{ $magang->mulai_magang }}</td>
                         <td>{{ $magang->selesai_magang }}</td>
-                        <td>{{ $magang->pembina->nama_pembina }}</td>
+                        <td>{{ $magang->pembina->nama_pembina ?? $tidak }}</td>
                         <td>{{ $magang->status }}</td>
                     </tr>
                 @endforeach
