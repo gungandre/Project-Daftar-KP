@@ -107,4 +107,5 @@ class KegiatanMagangController extends Controller
     {
         //
     }
+    
 }

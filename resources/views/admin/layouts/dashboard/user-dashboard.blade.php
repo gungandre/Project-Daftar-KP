@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-3 card-image ">
         <img class="d-flex justify-content-end" src="{{ asset('Image/' . $data->foto) }}" alt=""
-            style="max-width: 200px;max">
+            style="max-width: 250px;Object-fit: cover;">
     </div>
     <div class="col-sm-8 ">
         <table class="table table-borderless">
@@ -36,6 +36,6 @@
                 <td>Pebimbing Lapangan : {{ isset($data->Pembina->nama_pembina) }}</td>
             </tr>
         </table>
+        <a class="btn btn-primary" href="{{ route('magang.editprofile', $data->id) }}">Edit Data</a>
     </div>
-
 </div>

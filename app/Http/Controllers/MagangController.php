@@ -137,4 +137,45 @@ class MagangController extends Controller
 
         return Response()->download(public_path('Image/') . $file, $file, $headers);
     }
+    public function editMagang(Magang $magang)
+    {
+        $header_page = 'edit profile magang';
+
+        return view('admin.layouts.magangs.edit-magang', compact('header_page', 'magang'));
+    }
+    public function updateMagang(Request $request, Magang $magang)
+    {
+
+        if ($request->hasFile('foto')) {
+            $image = $request->file('foto');
+            $fileFoto = date('YmdHi') . $image->getClientOriginalName();
+            $image->move(public_path('Image/'), $fileFoto);
+        } else {
+            $fileFoto = $magang->fote;
+        }
+        if ($request->hasFile('surat_magang')) {
+            $filea = $request->file('surat_magang');
+            $filedocoment = date('YmdHi') . $filea->getClientOriginalName();
+            $filea->move(public_path('Image/'), $filedocoment);
+        } else {
+            $filedocoment = $magang->surat_magang;
+        }
+
+        $data = [
+            'nama_lengkap' => $request->nama_lengkap,
+            'nim_nis' => $request->nim_nis,
+            'alamat' => $request->alamat,
+            'instansi_pendidikan' => $request->instansi_pendidikan,
+            'no_hp' => $request->no_hp,
+            'email' => $request->email,
+            'jurusan' => $request->jurusan,
+            'mulai_magang' => $request->mulai_magang,
+            'selesai_magang' => $request->selesai_magang,
+            'foto' => $fileFoto,
+            'alamat' => $request->alamat,
+            'surat_magang' => $filedocoment,
+        ];
+        $magang->update($data);
+        return redirect()->route('dashboard');
+    }
 }

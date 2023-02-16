@@ -12,7 +12,7 @@
 </li>
 <li class="menu-item">
     <a href="{{ route('nilai.index') }}" class="menu-link">
-        <i class='bx bx-clipboard menu-icon tf-icons'></i>
+        <i class='bx bxs-layer-minus menu-icon tf-icons'></i>
         <div data-i18n="Analytics">Nilai</div>
     </a>
 </li>
