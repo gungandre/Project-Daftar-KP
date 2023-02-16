@@ -37,7 +37,9 @@ class NilaiController extends Controller
             }
         }
 
-
+        if (Auth::user()->roles == 'user') {
+            return view('admin.layouts.nilai.mahasiswa-show', compact('tidak', 'header_page', 'nilais', 'magang'));
+        }
         return view('admin.layouts.nilai.index', compact('tidak', 'header_page', 'nilais', 'magang'));
     }
 
