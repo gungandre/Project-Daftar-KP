@@ -24,12 +24,12 @@ use App\Http\Controllers\NilaiController;
 
 Route::middleware('auth', 'IsActive')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('nilai', NilaiController::class);
 
     Route::resource('userData', AbsenController::class);
     Route::middleware("roles.pembina")->group(function () {
         Route::resource('magang', MagangController::class);
         Route::put('magang/{magang}/change-status', [MagangController::class, 'changeStatus'])->name('magang.change-status');
-        Route::resource('nilai', NilaiController::class);
     });
 
     Route::middleware("roles.admin")->group(function () {
@@ -41,7 +41,6 @@ Route::middleware('auth', 'IsActive')->group(function () {
     });
 
     Route::middleware("roles.user")->group(function () {
-        Route::resource('nilai', NilaiController::class);
         Route::resource('user-absen', AbsenController::class);
     });
 });
