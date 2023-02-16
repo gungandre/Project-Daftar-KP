@@ -17,15 +17,17 @@ class NilaiController extends Controller
     public function index(Request $request)
     {
         $header_page = "Halaman Nilai";
-
+        $tidak = 'Belum Di input Pebimbing';
         if (Auth::user()->roles == 'user') {
+            $magang = Magang::where('user_id', Auth::user()->id)->first();
             if ($request->has('search')) {
                 $nilais = Nilai::where('user_id', Auth::user()->id)->with(['magang'])->whereRelation('magang', 'nama_lengkap', 'like', '%' . $request->search . '%')->latest()->paginate(5);
                 $nilais->appends('search', $request->search);
             } else {
-                $nilais = Nilai::with('magang')->latest()->paginate(5);
+                $nilais = Nilai::where('magang_id', $magang->id)->first();
             }
         } else {
+            $magang = Magang::all();
             if ($request->has('search')) {
                 $nilais = Nilai::with(['magang'])->whereRelation('magang', 'nama_lengkap', 'like', '%' . $request->search . '%')->latest()->paginate(5);
 
@@ -36,7 +38,7 @@ class NilaiController extends Controller
         }
 
 
-        return view('admin.layouts.nilai.index', compact('header_page', 'nilais'));
+        return view('admin.layouts.nilai.index', compact('tidak', 'header_page', 'nilais', 'magang'));
     }
 
     /**

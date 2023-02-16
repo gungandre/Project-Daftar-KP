@@ -26,6 +26,7 @@ Route::middleware('auth', 'IsActive')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('nilai', NilaiController::class);
 
+
     Route::resource('userData', AbsenController::class);
     Route::middleware("roles.pembina")->group(function () {
         Route::resource('magang', MagangController::class);
@@ -42,6 +43,9 @@ Route::middleware('auth', 'IsActive')->group(function () {
     });
 
     Route::middleware("roles.user")->group(function () {
+
+        Route::get('magang/{magang}/editMagang', [MagangController::class, 'editMagang'])->name('magang.editprofile');
+        Route::put('magang/{magang}/updateMagang', [MagangController::class, 'updateMagang'])->name('magang.updatemangang');
         Route::resource('user-absen', AbsenController::class);
     });
 });

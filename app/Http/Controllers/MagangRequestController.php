@@ -55,6 +55,6 @@ class MagangRequestController extends Controller
         );
 
         ModelsMagang::create($magang);
-        return view('auth.waitform')->with('message','Data created !');
+        return view('auth.waitform')->with('message', 'Data created !');
     }
 }

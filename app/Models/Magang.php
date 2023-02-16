@@ -36,7 +36,7 @@ class Magang extends Model
 
     public function Pembina()
     {
-        return $this->belongsTo(Pembina::class, 'id_pembina');
+        return $this->belongsTo(Pembina::class, 'id_pembina', 'id');
     }
 
     public function Nilai()
