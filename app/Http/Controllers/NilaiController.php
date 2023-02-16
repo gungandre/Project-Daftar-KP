@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Nilai;
 use App\Models\Magang;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 
 class NilaiController extends Controller
 {
@@ -18,12 +18,21 @@ class NilaiController extends Controller
     {
         $header_page = "Halaman Nilai";
 
-        if ($request->has('search')) {
-            $nilais = Nilai::with(['magang'])->whereRelation('magang', 'nama_lengkap', 'like', '%' . $request->search . '%')->latest()->paginate(5);
-
-            $nilais->appends('search', $request->search);
+        if (Auth::user()->roles == 'user') {
+            if ($request->has('search')) {
+                $nilais = Nilai::where('user_id', Auth::user()->id)->with(['magang'])->whereRelation('magang', 'nama_lengkap', 'like', '%' . $request->search . '%')->latest()->paginate(5);
+                $nilais->appends('search', $request->search);
+            } else {
+                $nilais = Nilai::with('magang')->latest()->paginate(5);
+            }
         } else {
-            $nilais = Nilai::with('magang')->latest()->paginate(5);
+            if ($request->has('search')) {
+                $nilais = Nilai::with(['magang'])->whereRelation('magang', 'nama_lengkap', 'like', '%' . $request->search . '%')->latest()->paginate(5);
+
+                $nilais->appends('search', $request->search);
+            } else {
+                $nilais = Nilai::with('magang')->latest()->paginate(5);
+            }
         }
 
 

@@ -1,43 +1,31 @@
 @extends('admin.layouts.app')
-
 @section('title', 'Data Nilai')
-
 @section('content')
-
     <div class="row">
 
         <div class="mb-4 col-lg-12">
 
             <div class="card">
                 <div class="card-body">
-
                     @if (session('message_success'))
                         <div class="alert alert-success">{{ session('message_success') }}</div>
                     @endif
-
                     @if (session('message_failed'))
                         <div class="alert alert-danger">{{ session('message_failed') }}</div>
                     @endif
-
                     <div class="row">
-                        <div class="col-lg-6">
 
+                        <div class="col-lg-6">
                             <div class="form-group mb-3">
                                 <form action="{{ route('nilai.index') }}" method="get">
-
                                     @csrf
-
                                     <input type="text" name="search" id="search" class="form-control"
                                         placeholder="search magang with name">
                                 </form>
                             </div>
-
                         </div>
                     </div>
-
-
                     <div class="table-responsive-sm">
-
                         <table class="table mb-5 table-striped">
                             <thead class="text-center">
                                 <tr>
@@ -87,22 +75,15 @@
                                         </td>
                                     </tr>
                                 @endforeach
-
                             </tbody>
                         </table>
-
                         <div class="d-flex align-items-baseline align-items-betweeen">
                             <p>Showing {{ $nilais->lastItem() }} of total {{ $nilais->total() }} enteries</p>
                             {{ $nilais->links() }}
                         </div>
-
                     </div>
-
                 </div>
             </div>
-
         </div>
-
     </div>
-
 @endsection

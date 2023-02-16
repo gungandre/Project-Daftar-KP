@@ -24,3 +24,9 @@
           <div>Nilai</div>
       </a>
   </li>
+  <li class="menu-item">
+      <a href="{{ route('nilai.index') }}" class="menu-link">
+          <i class="menu-icon tf-icons bx bxs-receipt"></i>
+          <div>User</div>
+      </a>
+  </li>

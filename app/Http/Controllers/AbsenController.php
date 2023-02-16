@@ -21,7 +21,12 @@ class AbsenController extends Controller
         $header_page = "dashboard User";
 
         if ($request->type == 'datatable') {
-            $data = Absen::orderBy('created_at', 'desc');
+            if (Auth::user()->roles == 'user') {
+                $data = Absen::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
+            } else {
+                $data = Absen::orderBy('created_at', 'desc');
+            }
+
             return DataTables()->of($data)
                 ->addColumn('action', function ($data) {
                     $action = '';
