@@ -29,6 +29,7 @@ Route::middleware('auth', 'IsActive')->group(function () {
     Route::middleware("roles.pembina")->group(function () {
         Route::resource('magang', MagangController::class);
         Route::put('magang/{magang}/change-status', [MagangController::class, 'changeStatus'])->name('magang.change-status');
+        Route::resource('nilai', NilaiController::class);
     });
 
     Route::middleware("roles.admin")->group(function () {
@@ -37,7 +38,6 @@ Route::middleware('auth', 'IsActive')->group(function () {
         Route::get('kegiatan-magang/{file}/download', [KegiatanMagangController::class, 'downloadPDF'])->name('kegiatan-magang.download-pdf');
         Route::get('magang/{magang}/pembina', [MagangController::class, 'pembina'])->name('magang.pembina');
         Route::put('magang/{magang}/pembina', [MagangController::class, 'pembinaUpdate'])->name('magang.pembina-add');
-        Route::resource('nilai', NilaiController::class);
     });
 
     Route::middleware("roles.user")->group(function () {
