@@ -59,6 +59,7 @@
                              <span class="align-middle">Settings</span>
                          </a>
                      </li>
+
                      <li>
                          <a class="dropdown-item" href="#">
                              <span class="align-middle d-flex align-items-center">
