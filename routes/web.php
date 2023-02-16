@@ -38,6 +38,7 @@ Route::middleware('auth', 'IsActive')->group(function () {
         Route::get('kegiatan-magang/{file}/download', [KegiatanMagangController::class, 'downloadPDF'])->name('kegiatan-magang.download-pdf');
         Route::get('magang/{magang}/pembina', [MagangController::class, 'pembina'])->name('magang.pembina');
         Route::put('magang/{magang}/pembina', [MagangController::class, 'pembinaUpdate'])->name('magang.pembina-add');
+        Route::get('magang/download-pdf/{file}', [MagangController::class, 'downloadPDF'])->name('magang.downloadPdf');
     });
 
     Route::middleware("roles.user")->group(function () {

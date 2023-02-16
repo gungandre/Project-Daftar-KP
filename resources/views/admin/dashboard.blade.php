@@ -29,10 +29,8 @@
             @endif
             <div class="card p-2 my-2">
                 <div class="row">
-                    @if (Auth::user()->roles == 'admin')
+                    @if (Auth::user()->roles == 'admin' || Auth::user()->roles == 'pembina')
                         @include('admin.layouts.dashboard.admin-dashboard')
-                    @elseif (Auth::user()->roles == 'pembina')
-                        @include('admin.layouts.dashboard.pembina-dashboard')
                     @else
                         @include('admin.layouts.dashboard.user-dashboard')
                     @endif

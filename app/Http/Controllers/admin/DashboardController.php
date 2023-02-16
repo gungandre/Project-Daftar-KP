@@ -14,15 +14,21 @@ class DashboardController extends Controller
     public function index()
     {
         $header_page = "dashboard menu";
-        $id =  Auth::user()->id;
-        $pembina = Pembina::where('user_id', $id)->first();
         if (Auth::user()->roles == 'user') {
-            $user = User::find(Auth::user()->id);
-            $data = Magang::where('user_id', $id)->first();
-        } elseif (Auth::user()->roles == 'pembina') {
-            $data = Magang::where('id_pembina', $pembina->id)->first();
+            $data = Magang::where('user_id', Auth::user()->id)->first();
+        } else if (Auth::user()->roles == 'pembina') {
+
+            $data = [
+                "magang" => Magang::with(['pembina'])->where('status', 'active')->where('id_pembina', Auth::user()->pembina->id)->count(),
+                "pembina" => Pembina::all()->count(),
+                "magang_aktif" => Magang::with(['pembina'])->where('status', 'active')->where('id_pembina', Auth::user()->pembina->id)->latest()->paginate(5)
+            ];
         } else {
-            $data = Magang::tobase()->paginate('8');
+            $data = [
+                "magang" => Magang::all()->count(),
+                "pembina" => Pembina::all()->count(),
+                "magang_aktif" => Magang::with(['pembina'])->where('status', 'active')->latest()->paginate(5)
+            ];
         }
 
         return view('admin.dashboard', compact('header_page', 'data'));

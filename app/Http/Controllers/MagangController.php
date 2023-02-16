@@ -79,7 +79,8 @@ class MagangController extends Controller
      */
     public function show(Magang $magang)
     {
-        //
+        $header_page = "data magang " . $magang->nama_lengkap;
+        return view('admin.layouts.magangs.show', compact('magang', 'header_page'));
     }
 
     /**
@@ -125,5 +126,15 @@ class MagangController extends Controller
     public function destroy(Magang $magang)
     {
         //
+    }
+
+    public function downloadPDF($file)
+    {
+        $headers = [
+            'Content-Type' => 'application/pdf',
+            'Cache-control' => 'no-cache, must-revalidate'
+        ];
+
+        return Response()->download(public_path('Image/') . $file, $file, $headers);
     }
 }
