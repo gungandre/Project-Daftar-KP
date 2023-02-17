@@ -52,7 +52,7 @@
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama Pembina</label>
                                 <input type="text" name="" id=""
-                                    value="{{ $magang->pembina->nama_pembina }}" class="form-control" readonly>
+                                    value="{{ $magang->pembina->nama_pembina  ?? null}}" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="col">
