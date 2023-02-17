@@ -100,12 +100,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($magangs as $magang)
+                            @forelse ($magangs as $magang)
                                 <tr>
                                     <td>{{ $magang->nama_lengkap }}</td>
                                     <td>{{ $magang->instansi_pendidikan }}</td>
                                 </tr>
-                            @endforeach
+                            @else
+                                <tr>
+                                    <td colspan="2" class="text-center">Data Tidak Ada</td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
 
