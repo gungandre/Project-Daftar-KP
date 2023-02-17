@@ -80,6 +80,7 @@ class MagangController extends Controller
     public function show(Magang $magang)
     {
         $header_page = "data magang " . $magang->nama_lengkap;
+
         return view('admin.layouts.magangs.show', compact('magang', 'header_page'));
     }
 
