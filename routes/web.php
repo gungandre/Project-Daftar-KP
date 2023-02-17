@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\PembinaController;
 use App\Http\Controllers\MagangRequestController;
 use App\Http\Controllers\KegiatanMagangController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NilaiController;
 
 /*
@@ -22,8 +23,10 @@ use App\Http\Controllers\NilaiController;
 |
 */
 
+Route::get('/', [HomeController::class, 'index'])->name('home.index');
+
 Route::middleware('auth', 'IsActive')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('nilai', NilaiController::class);
 
 
