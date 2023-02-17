@@ -12,6 +12,7 @@
                         <th scope="col">Instansi Pendidikan</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Kehadiran</th>
+                        <th scope="col">Status</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -50,6 +51,11 @@
                     {
                         data: "kehadiran",
                         name: "kehadiran",
+                        orderable: true
+                    },
+                    {
+                        data: "status",
+                        name: "status",
                         orderable: true
                     },
                     {

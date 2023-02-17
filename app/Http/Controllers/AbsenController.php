@@ -22,9 +22,9 @@ class AbsenController extends Controller
 
         if ($request->type == 'datatable') {
             if (Auth::user()->roles == 'user') {
-                $data = Absen::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
+                $data = Kegiatan::where('user_id', Auth::user()->id)->orderBy('created_at', 'desc');
             } else {
-                $data = Absen::orderBy('created_at', 'desc');
+                $data = Kegiatan::orderBy('created_at', 'desc');
             }
 
             return DataTables()->of($data)
