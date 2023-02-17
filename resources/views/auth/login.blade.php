@@ -5,7 +5,7 @@
     <div class="card-body">
         <!-- Logo -->
         <div class="app-brand justify-content-center">
-            <a href="index.html" class="app-brand-link gap-2">
+            <a href="index.html" class="gap-2 app-brand-link">
                 <span class="app-brand-text demo text-body fw-bolder">Login</span>
             </a>
         </div>
@@ -29,7 +29,7 @@
                     <input type="password" id="password" class="form-control" name="password"
                         placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
                         aria-describedby="password" />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                    <span class="cursor-pointer input-group-text"><i class="bx bx-hide"></i></span>
                 </div>
             </div>
             <div class="mb-3">
@@ -46,13 +46,6 @@
                 </button>
             </div>
         </form>
-
-        <p class="text-center">
-            <span>Don't have account??</span>
-            <a href="{{ route('magang.request') }}">
-                <span>Request Now !!</span>
-            </a>
-        </p>
     </div>
 </div>
 
