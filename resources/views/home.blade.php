@@ -100,19 +100,20 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($magangs as $magang)
-                                <tr>
-                                    <td>{{ $magang->nama_lengkap }}</td>
-                                    <td>{{ $magang->instansi_pendidikan }}</td>
-                                </tr>
+                            @if ($magangs->count())
+                                @foreach ($magangs as $magang)
+                                    <tr>
+                                        <td>{{ $magang->nama_lengkap }}</td>
+                                        <td>{{ $magang->instansi_pendidikan }}</td>
+                                    </tr>
+                                @endforeach
                             @else
                                 <tr>
                                     <td colspan="2" class="text-center">Data Tidak Ada</td>
                                 </tr>
-                            @endforelse
+                            @endif
                         </tbody>
                     </table>
-
                 </div>
             </div>
 
