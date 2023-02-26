@@ -9,6 +9,7 @@ use App\Http\Controllers\admin\PembinaController;
 use App\Http\Controllers\MagangRequestController;
 use App\Http\Controllers\KegiatanMagangController;
 use App\Http\Controllers\admin\DashboardController;
+use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NilaiController;
 
@@ -29,7 +30,7 @@ Route::middleware('auth', 'IsActive')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::resource('nilai', NilaiController::class);
 
-
+    Route::get('changePassword',[NewPasswordController::class,'create'])->name('profile.changePassword');
     Route::resource('userData', AbsenController::class);
     Route::middleware("roles.pembina")->group(function () {
         Route::resource('magang', MagangController::class);
