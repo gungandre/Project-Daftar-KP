@@ -97,7 +97,7 @@
                             <div class="form-outline mb-4">
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="basic-addon1">+62</span>
-                                    <input type="text" class="form-control" placeholder="Exampel : 821366458"
+                                    <input type="text" class="form-control" placeholder="Contoh: 821366458"
                                         aria-label="Username" aria-describedby="basic-addon1" name="no_hp">
                                 </div>
                                 <label class="form-label" for="form6Example5">Phone Number</label>
@@ -170,13 +170,13 @@
     <script src="../assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
-    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <script src="../assets/vendor/js/helpers.js"></script>
 
 
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="{{ asset('js/sweetalert.js') }}"></script>
+    <script src="../assets/js/config.js"></script>
+    <script src="../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../assets/vendor/js/bootstrap.js"></script>
 </body>
 
 
