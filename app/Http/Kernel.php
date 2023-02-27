@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'roles.admin' => \App\Http\Middleware\RolesAdmin::class,
         'roles.pembina' => \App\Http\Middleware\isPembina::class,
         'roles.user' => \App\Http\Middleware\RolesUser::class,
-        'IsActive' => \App\Http\Middleware\IsActice::class
+        'IsActive' => \App\Http\Middleware\IsActice::class,
+        'CheckNilai' => \App\Http\Middleware\CheckNilai::class,
     ];
 }
