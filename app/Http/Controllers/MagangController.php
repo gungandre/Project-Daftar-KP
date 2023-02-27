@@ -25,7 +25,7 @@ class MagangController extends Controller
 
             $magangs = (Auth::user()->roles == 'admin') ? Magang::with(["pembina"])->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina"])->where("id_pembina", Auth::user()->id)->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : "");
         } else {
-            $magangs = (Auth::user()->roles == 'admin') ? Magang::with(['pembina'])->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina"])->where("id_pembina", Auth::user()->id)->latest()->paginate(5) : "");
+            $magangs = (Auth::user()->roles == 'admin') ? Magang::with(['pembina'])->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina"])->where("id_pembina", Auth::user()->pembina->id)->latest()->paginate(5) : "");
         }
 
         return view('admin.layouts.magangs.index', compact('magangs', 'header_page'));

@@ -34,16 +34,16 @@ Route::middleware('auth', 'IsActive')->group(function () {
     Route::resource('userData', AbsenController::class);
     Route::middleware("roles.pembina")->group(function () {
         Route::resource('magang', MagangController::class);
+        Route::resource('kegiatan-magang', KegiatanMagangController::class);
         Route::put('magang/{magang}/change-status', [MagangController::class, 'changeStatus'])->name('magang.change-status');
+        Route::get('magang/download-pdf/{file}', [MagangController::class, 'downloadPDF'])->name('magang.downloadPdf');
     });
 
     Route::middleware("roles.admin")->group(function () {
         Route::resource('pembina', PembinaController::class);
-        Route::resource('kegiatan-magang', KegiatanMagangController::class);
         Route::get('kegiatan-magang/{file}/download', [KegiatanMagangController::class, 'downloadPDF'])->name('kegiatan-magang.download-pdf');
         Route::get('magang/{magang}/pembina', [MagangController::class, 'pembina'])->name('magang.pembina');
         Route::put('magang/{magang}/pembina', [MagangController::class, 'pembinaUpdate'])->name('magang.pembina-add');
-        Route::get('magang/download-pdf/{file}', [MagangController::class, 'downloadPDF'])->name('magang.downloadPdf');
     });
 
     Route::middleware("roles.user")->group(function () {
