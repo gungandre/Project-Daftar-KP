@@ -13,29 +13,30 @@
             @csrf
 
             <!-- Password Reset Token -->
-            <input type="hidden" name="token" class="mb-3" value="{{ $request->route('token') }}">
+
 
             <!-- Email Address -->
             <div class="mb-3">
-                <x-label for="email" :value="__('Email')" class="form-label" />
+                <x-label for="current_password" :value="__('Current Password')" class="form-label" />
 
-                <x-input id="email"  class="block mt-1 w-full form-control" type="email" name="email" :value="old('email', $request->email)" required autofocus />
+                <x-input id="email" id="current_password" name="current_password" type="password" class="mt-1 block w-full form-control"
+                autocomplete="current-password" />
             </div>
 
             <!-- Password -->
             <div class="mt-4">
-                <x-label for="password" :value="__('Password')" class="form-label"  />
+                <x-label for="password" :value="__('New Password')" class="form-label" />
 
-                <x-input id="password" class="block mt-1 w-full form-control" type="password" name="password" required />
+                <x-input id="password" id="password" name="password" type="password" class="mt-1 form-control block w-full"
+                autocomplete="new-password" />
             </div>
 
             <!-- Confirm Password -->
             <div class="mt-4">
                 <x-label for="password_confirmation" :value="__('Confirm Password')"  class="form-label"/>
 
-                <x-input id="password_confirmation" class="block mt-1 w-full form-control"
-                                    type="password"
-                                    name="password_confirmation" required />
+                <x-input id="password_confirmation" name="password_confirmation" type="password"
+                class="mt-1 block w-full form-control" autocomplete="new-password" />
             </div>
 
             <div class="flex items-center justify-end mt-4">
