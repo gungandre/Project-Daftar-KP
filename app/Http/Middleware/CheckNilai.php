@@ -25,7 +25,7 @@ class CheckNilai
 
         $maganggan = Magang::find($id->id);
         if($chekDateNow < $maganggan->selesai_magang){
-            return redirect()->route('dashboard')->with('errors','Maaf belum waktunya memberi nilai');
+            return redirect()->route('dashboard')->with('error','Maaf belum waktunya memberi nilai');
         }
         return $next($request);
     }
