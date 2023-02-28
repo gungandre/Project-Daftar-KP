@@ -55,7 +55,7 @@
         <span class="success" data-message="{{ session('message') }}"></span>
     @endif
     @if (session('errors'))
-    <span class="errors" data-message="{{ session('errors') }}"></span>
+    <span class="error" data-message="{{ session('errors') }}"></span>
 @endif
 
     <!-- Layout wrapper -->
