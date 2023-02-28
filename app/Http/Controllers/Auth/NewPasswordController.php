@@ -8,9 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Auth\Passwords\PasswordBroker;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class NewPasswordController extends Controller
 {
     /**
@@ -43,8 +44,11 @@ class NewPasswordController extends Controller
         $request->user()->update([
             'password' => Hash::make($validated['password']),
         ]);
+        Session::flash('sukses','Password Berhasil diganti!');
+        return back()->with('status', 'password-updated')->with('message', 'Password Berhasil diganti!');
 
-        return back()->with('status', 'password-updated');
+
+
     }
 
 }

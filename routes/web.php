@@ -32,11 +32,7 @@ Route::middleware('auth', 'IsActive')->group(function () {
 
     Route::get('nilai',[NilaiController::class,"index"])->name('nilai.index');
     Route::put('nilai/update',[NilaiController::class,"edit"])->name('nilai.update');
-    Route::get('nilai/{nilai}',[NilaiController::class,"edit"])->name('nilai.edit');
-    // Route::middleware('auth','CheckNilai')->group(function(){
-
-
-    // });
+    Route::get('nilai/{nilai}',[NilaiController::class,"edit"])->name('nilai.edit')->middleware('CheckNilai');
 
     Route::get('changePassword',[NewPasswordController::class,'create'])->name('profile.changePassword');
     Route::resource('userData', AbsenController::class);
