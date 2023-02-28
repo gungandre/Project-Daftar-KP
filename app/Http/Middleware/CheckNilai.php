@@ -21,11 +21,11 @@ class CheckNilai
     public function handle(Request $request, Closure $next)
     {
         $chekDateNow = Carbon::now();
+        $id = $request->route('nilai');
 
-        $pembina = Pembina::where('user_id',Auth::user()->id)->first();
-        $maganggan = Magang::where('id_pembina',$pembina->id)->first();
-        if($chekDateNow >= $maganggan->selesai_magang){
-            return redirect()->route('dashboard')->with('error','Maaf belum waktunya memberi nilai');
+        $maganggan = Magang::find($id->id);
+        if($chekDateNow < $maganggan->selesai_magang){
+            return redirect()->route('dashboard')->with('errors','Maaf belum waktunya memberi nilai');
         }
         return $next($request);
     }

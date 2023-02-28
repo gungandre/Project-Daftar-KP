@@ -54,6 +54,9 @@
     @if (session('message'))
         <span class="success" data-message="{{ session('message') }}"></span>
     @endif
+    @if (session('errors'))
+    <span class="errors" data-message="{{ session('errors') }}"></span>
+@endif
 
     <!-- Layout wrapper -->
     <div class="layout-wrapper layout-content-navbar">
@@ -110,6 +113,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="{{ asset('js/sweetalert.js') }}"></script>
+<!-- Masukkan script Sweet Alert -->
+
     @stack('script')
 </body>
 
