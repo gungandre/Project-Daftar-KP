@@ -16,10 +16,10 @@
 
                         @csrf
                         @method('PUT')
-
+                        <input type="text" name="idNilai" value="{{$nilai->id}}" hidden>
                         <div class="mb-3">
                             <label class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" readonly value="{{ $nilai->magang->nama_lengkap }}">
+                            <input type="text" class="form-control" readonly  value="{{ $nilai->magang->nama_lengkap }}">
                         </div>
 
                         <div class="mb-3">

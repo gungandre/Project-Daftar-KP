@@ -94,8 +94,9 @@ class NilaiController extends Controller
      * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Nilai $nilai)
+    public function update(Request $request)
     {
+        $nilai = Nilai::find($request->idNilai);
         $nilai->update([
             'nilai' => $request->nilai,
             'keterangan' => $request->keterangan
