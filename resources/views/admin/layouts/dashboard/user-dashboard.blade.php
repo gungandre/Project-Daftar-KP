@@ -33,7 +33,7 @@
                 <td>Status : {{ $data->status }}</td>
             </tr>
             <tr>
-                <td>Pebimbing Lapangan : {{ $data->Pembina->nama_pembina ?? null }}</td>
+                <td>Pembimbing Lapangan : {{ $data->Pembina->nama_pembina ?? null }}</td>
             </tr>
         </table>
         <a class="btn btn-primary" href="{{ route('magang.editprofile', $data->id) }}">Edit Data</a>
