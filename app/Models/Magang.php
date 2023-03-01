@@ -19,6 +19,7 @@ class Magang extends Model
         'alamat',
         'no_hp',
         'email',
+        'status_desc',
         'instansi_pendidikan',
         'jurusan',
         'mulai_magang',

@@ -45,6 +45,10 @@
                                 <option value="reject " @if ($magang->status == 'reject ') selected @endif>reject </option>
                             </select>
                         </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Status Description</label>
+                            <textarea name="status_desc" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                        </div>
 
                         <button type="submit" class="btn btn-primary">Simpan</button>
                         <a href="{{ route('magang.index') }}" class="btn btn-secondary">Kembali</a>
