@@ -43,8 +43,6 @@
                                 <option value="active" @if ($magang->status == 'active') selected @endif>Active</option>
                                 <option value="inactive" @if ($magang->status == 'inactive') selected @endif>Inactive</option>
                                 <option value="reject " @if ($magang->status == 'reject ') selected @endif>reject </option>
-
-
                             </select>
                         </div>
 
