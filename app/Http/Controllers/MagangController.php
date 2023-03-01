@@ -111,11 +111,11 @@ class MagangController extends Controller
     public function changeStatus(Request $request, Magang $magang)
     {
         $data = $request->all();
-
+        $magang->update(['status_desc'=>$data['status_desc']]);
         $magang->update(['status' => $data['status']]);
         $magang->user->update(['status' => $data['status']]);
 
-        return redirect()->route('magang.index')->with("message_success", "Status Magang Telah Di Approve");
+        return redirect()->route('magang.index')->with("message_success", "Status Magang Telah Di Perbaharui");
     }
 
     /**

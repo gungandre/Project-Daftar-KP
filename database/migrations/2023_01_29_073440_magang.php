@@ -30,6 +30,7 @@ class Magang extends Migration
             $table->string('foto');
             $table->string('surat_magang')->nullable();
             $table->string('status');
+            $table->string('status_desc')->default('Menunggu');
             $table->foreign('id_pembina')->references('id')->on('pembina');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

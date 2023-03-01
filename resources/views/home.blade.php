@@ -97,6 +97,7 @@
                             <tr>
                                 <td>Nama Lengkap</td>
                                 <td>Instansi Pendidikan</td>
+                                <td>Status</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,10 +105,11 @@
                                 <tr>
                                     <td>{{ $magang->nama_lengkap }}</td>
                                     <td>{{ $magang->instansi_pendidikan }}</td>
+                                    <td>{{$magang->status_desc }}</td>
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="2" class="text-center">Data Tidak Ada</td>
+                                    <td colspan="3" class="text-center">Data Tidak Ada</td>
                                 </tr>
                             @endforelse
                         </tbody>
