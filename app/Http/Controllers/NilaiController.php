@@ -17,7 +17,7 @@ class NilaiController extends Controller
     public function index(Request $request)
     {
         $header_page = "Halaman Nilai";
-        $tidak = 'Belum Di input Pebimbing';
+        $tidak = 'Belum Di input Pembimbing';
         if (Auth::user()->roles == 'user') {
             $magang = Magang::where('user_id', Auth::user()->id)->first();
             if ($request->has('search')) {

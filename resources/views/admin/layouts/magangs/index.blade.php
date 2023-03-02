@@ -46,7 +46,7 @@
                                     <td>Nama Lengkap</td>
                                     <td>Nim</td>
                                     <td>email</td>
-                                    <td>Instasi</td>
+                                    <td>Instansi</td>
                                     <td>Status</td>
                                     <td>Action</td>
                                 </tr>
@@ -96,7 +96,7 @@
                         </table>
 
                         <div class="d-flex align-items-baseline align-items-betweeen">
-                            <p>Showing {{ $magangs->lastItem() }} of total {{ $magangs->total() }} enteries</p>
+                            <p>Showing {{ $magangs->lastItem() }} of total {{ $magangs->total() }} entries</p>
                             {{ $magangs->links() }}
                         </div>
 

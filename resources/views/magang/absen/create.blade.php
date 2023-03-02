@@ -31,7 +31,7 @@
             <!-- Number input -->
             <div class="form-outline mb-4">
                 <input type="file" id="form6Example6" class="form-control" name="file_kegiatan" />
-                <label class="form-label" for="form6Example6">Apload File Kegiatan</label>
+                <label class="form-label" for="form6Example6">Upload File Kegiatan</label>
             </div>
 
             <select class="form-select form-select-lg mb-3" name="kehadiran" aria-label=".form-select-lg example">
