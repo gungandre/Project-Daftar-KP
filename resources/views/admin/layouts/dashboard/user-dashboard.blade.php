@@ -21,7 +21,7 @@
                 <td>Email : {{ $data->email }}</td>
             </tr>
             <tr>
-                <td>Jurasan : {{ $data->jurusan }}</td>
+                <td>Jurusan : {{ $data->jurusan }}</td>
             </tr>
             <tr>
                 <td>Mulai Magang : {{ $data->mulai_magang }}</td>
