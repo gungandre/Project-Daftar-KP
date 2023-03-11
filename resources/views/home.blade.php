@@ -83,7 +83,7 @@
         <div class="row" style="height:100vh;">
 
             <div class="col">
-                <img src="{{ asset('assets/img/backgrounds/background-home.jpg') }}" class="img-fluid h-100"
+                <img src="{{ asset('assets/img/89a803ed-09d1-4bb9-a4d2-72d383209afc.jpg') }}" class="img-fluid h-100"
                     style="object-fit:cover;">
             </div>
 
@@ -97,7 +97,7 @@
                             <tr>
                                 <td>Nama Lengkap</td>
                                 <td>Instansi Pendidikan</td>
-                                <td>Status</td>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -105,7 +105,6 @@
                                 <tr>
                                     <td>{{ $magang->nama_lengkap }}</td>
                                     <td>{{ $magang->instansi_pendidikan }}</td>
-                                    <td>{{$magang->status_desc }}</td>
                                 </tr>
                             @empty
                                 <tr>

@@ -84,7 +84,13 @@
     </div>
     <!-- / Layout wrapper -->
 
-
+    <footer class=" text-center text-lg-start" style="background-color: #696cff;">
+        <!-- Copyright -->
+        <div class="text-center p-3  text-white text-uppercase" style="background-color: rgba(0, 0, 0, 0.2);">
+            sistem pengelolaan mahasiswa Kerja Praktek Kantor Samsat Kabupaten Manggarai
+        </div>
+        <!-- Copyright -->
+      </footer>
 
 
     <!-- Core JS -->
