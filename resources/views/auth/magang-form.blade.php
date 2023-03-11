@@ -53,10 +53,10 @@
 
     <div class="" style="height: 100%;">
         <div class="" style="">
-            <div class="row">
+            <div class="row" style="height:100vh;">
                 <div class="col">
-                    <img src="{{ asset('assets/img/register.jpeg') }}" class="img-fluid rounded-start" alt="..."
-                        style="height: 100vh;">
+                    <img src="{{ asset('assets/img/13b75c5b-42ae-4146-8a96-a940e901e4ae.jpg') }}" class="img-fluid h-100" alt="..."
+                    style="object-fit:cover; background-size: cover">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
