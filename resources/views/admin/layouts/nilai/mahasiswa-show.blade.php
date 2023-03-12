@@ -39,14 +39,7 @@
 
     <div class="d-flex flex-row  card my-4 mb-3 p-3">
         <div class="col p-5">
-            <h2>Nama : {{ $magang->nama_lengkap }}</h2>
-
-            <div class="mt-5">
-                <h5>Instansi : {{ $magang->instansi_pendidikan }}</h5>
-                <h5>Mulai Magang : {{ $magang->mulai_magang }}</h5>
-                <h5>Selesai Magang : {{ $magang->selesai_magang }}</h5>
-            </div>
-
+        <img src="{{ asset('assets/img/Capture.PNG') }}" alt="">
         </div>
         <div class="col">
             <div class="card-body">
