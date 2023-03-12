@@ -57,7 +57,7 @@
             <h3 class=" col-sm-10 text-center" style="margin: auto; ">KANTOR SAMSAT KABUPATEN MANGGARAI</h3>
         </a>
     </nav>
-    <div class="" style="height: 100%;">
+    <div class="" style="">
         <div class="" style="">
             <div class="row" style="height:100vh;">
                 <div class="col">
@@ -65,7 +65,7 @@
                     style="object-fit:cover; background-size: cover">
                 </div>
                 <div class="col-md-7">
-                    <div class="card-body">
+                    <div class="">
                         <form class="form-control" action="{{ route('magang.storerequest') }}" method="POST"
                             enctype="multipart/form-data">
                             @csrf

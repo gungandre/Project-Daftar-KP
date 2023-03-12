@@ -3,6 +3,10 @@
 @section('form-login', 'login')
 <div class="card">
     <div class="card-body">
+        <div class="d-flex align-items-center justify-content-center">
+            <img src="{{ asset('assets/img/Lambang_Kabupaten_Manggarai-150x150.png') }}" class="text-center"  style="max-width: 100px" alt="">
+        </div>
+
         <!-- Logo -->
         <div class="app-brand justify-content-center">
             <a href="index.html" class="gap-2 app-brand-link">
