@@ -13,8 +13,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        $tidak = 'belum di isi';
-        $header_page = "dashboard menu";
+        $tidak = 'Belum di isi';
+        $header_page = "Dashboard Menu";
         if (Auth::user()->roles == 'user') {
             $data = Magang::where('user_id', Auth::user()->id)->first();
         } else if (Auth::user()->roles == 'pembina') {
