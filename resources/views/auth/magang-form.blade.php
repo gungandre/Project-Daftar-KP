@@ -50,7 +50,13 @@
     @if (session('message'))
         <span class="success" data-message="{{ session('message') }}"></span>
     @endif
-
+    <nav class="navbar navbar-light bg-light ">
+        <a class="navbar-brand row" href="{{route('login')}}">
+            <img src="{{asset('assets/img/Lambang_Kabupaten_Manggarai-150x150.png')}}" width="70" height="70"
+                class="d-inline-block align-top col-sm-2" alt="">
+            <h3 class=" col-sm-10 text-center" style="margin: auto; ">KANTOR SAMSAT KABUPATEN MANGGARAI</h3>
+        </a>
+    </nav>
     <div class="" style="height: 100%;">
         <div class="" style="">
             <div class="row" style="height:100vh;">
