@@ -10,11 +10,12 @@
                     <div class="d-flex align-items-end row">
                         <div class="col-sm-7">
                             <div class="card-body">
-                                <h5 class="card-title text-primary">Congratulations John! 🎉</h5>
+                                <h5 class="card-title text-primary">Selamat {{ $data->nama_lengkap }}! 🎉</h5>
                                 <p class="mb-4">
                                     Kamu Harus mengupdate Data Diri dan <span class="fw-bold">Password</span> Agar lebih aman
                                 </p>
-                                <a href="" class="btn btn-sm btn-outline-primary">Update Profile & Password?</a>
+                                <a href="/changePassword" class="btn btn-sm btn-outline-primary">Update Profile
+                                    & Password?</a>
                             </div>
                         </div>
                         <div class="col-sm-5 text-center text-sm-left">
