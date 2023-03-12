@@ -2,17 +2,36 @@
 @section('title', 'Data Nilai')
 @section('content')
 
-    <div class="card mb-3" style="max-height: 300px; ">
+    <div class="card mb-3">
         <div class="row g-0">
-            <div class="col-md-4">
-                <img src="{{ asset('Image/' . $magang->foto) }}" style="max-height: 300px; width: 400px; Object-fit: cover;"
-                    class="img-fluid rounded-start" alt="...">
+            <div class="col-md-4 d-flex align-items-center">
+                <img src="{{ asset('Image/' . $magang->foto) }}" style="max-height: 450px; width: 450px; Object-fit: cover;"
+                    class="img-fluid rounded-start rounded-circle border-1 mr-5" alt="...">
             </div>
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h3 class="card-title">{{ $magang->nama_lengkap }}</h3>
-                    <h4 class="card-text">{{ $magang->nim_nis }}</h4>
-                    <h4 class="card-text">{{ $magang->email }}</h4>
+            <div class="col-md-8 ml-2">
+                <div class="card-body align-items-center ">
+
+                    <ul class="list-group list-group-light">
+                        <li class="" style="list-style: none
+                        ">
+                            <p><b>Nama :</b> <br> {{ $magang->nama_lengkap }}</p>
+                            <hr>
+                            <p> <b>NIM :</b> <br> {{ $magang->nim_nis }}</p>
+                            <hr>
+                            <p> <b>Email :</b> <br> {{ $magang->email }} </p>
+                            <hr>
+                            <p> <b>Instansi :</b> <br> {{ $magang->instansi_pendidikan }} </p>
+                            <hr>
+                            <p> <b>Mulai Magang :</b> <br> {{ $magang->mulai_magang }} </p>
+                            <hr>
+                            <p> <b>Selesai Magang :</b> <br> {{ $magang->instansi_pendidikan }} </p>
+                            <hr>
+                        </li>
+
+
+
+
+                    </ul>
                 </div>
             </div>
         </div>

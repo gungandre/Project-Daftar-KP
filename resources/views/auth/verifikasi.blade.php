@@ -43,17 +43,17 @@
 
 <body>
     @if ($errors->any())
-    @foreach ($errors->all() as $error)
-    <span class="error" data-message="{{ $error }}"></span>
-    @endforeach
+        @foreach ($errors->all() as $error)
+            <span class="error" data-message="{{ $error }}"></span>
+        @endforeach
     @endif
     @if (session('message'))
-    <span class="success" data-message="{{ session('message') }}"></span>
+        <span class="success" data-message="{{ session('message') }}"></span>
     @endif
     <!-- Image and text -->
     <nav class="navbar navbar-light bg-light ">
-        <a class="navbar-brand row" href="{{route('login')}}">
-            <img src="{{asset('assets/img/Lambang_Kabupaten_Manggarai-150x150.png')}}" width="70" height="70"
+        <a class="navbar-brand row" href="{{ route('login') }}">
+            <img src="{{ asset('assets/img/Lambang_Kabupaten_Manggarai-150x150.png') }}" width="70" height="70"
                 class="d-inline-block align-top col-sm-2" alt="">
             <h3 class=" col-sm-10 text-center" style="margin: auto; ">KANTOR SAMSAT KABUPATEN MANGGARAI</h3>
         </a>
@@ -62,13 +62,15 @@
         <div class="" style="height: 100%;">
             <h2 class="text-center mt-4 font-weight-bold">Mohon Tunggu Untuk Update</h2>
 
-            <h5 class="text-center font-weight-bold" style="color: #0099ff;">Reques anda kami terima mohon tunggu informasi lebih lanjut lagi</h5>
+            <h5 class="text-center font-weight-bold" style="color: #0099ff;">Permintaan anda sedang kami proses. Mohon
+                tunggu
+                informasi lebih lanjut lagi</h5>
             <h5 class="text-center ">Setelah di setujui oleh pihak magang untuk sementara password : 123456789</h5>
             <h5 class="text-center">Setelah anda login anda dapat melakukan pergantian password</h5>
 
 
 
-            <div class="d-flex align-items-center justify-content-center" >
+            <div class="d-flex align-items-center justify-content-center">
                 <a href="{{ route('login') }}" class="btn btn-primary mx-auto">Back To Login</a>
             </div>
         </div>
@@ -89,7 +91,7 @@
                 <p style="color: #0099ff ;">(0385) 21730</p>
             </div>
             <div class="col-sm-3">
-                <img src="{{asset('assets/img/desa-wisata-wae-rebo-12_169.jpeg')}}" alt="" style="width:70vh">
+                <img src="{{ asset('assets/img/desa-wisata-wae-rebo-12_169.jpeg') }}" alt="" style="width:70vh">
             </div>
         </div>
     </footer>
