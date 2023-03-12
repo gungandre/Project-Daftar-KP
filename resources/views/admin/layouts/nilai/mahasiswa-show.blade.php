@@ -39,7 +39,7 @@
 
     <div class="d-flex flex-row  card my-4 mb-3 p-3">
         <div class="col p-5">
-        <img src="{{ asset('assets/img/Capture.PNG') }}" alt="">
+        <img src="{{ asset('assets/img/Capture.PNG') }}" alt="" style="max-width: 400px">
         </div>
         <div class="col">
             <div class="card-body">
