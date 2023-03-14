@@ -22,15 +22,13 @@
                             <hr>
                             <p> <b>Instansi :</b> <br> {{ $magang->instansi_pendidikan }} </p>
                             <hr>
+                            <p> <b>Status Terima :</b> <br> {{ $magang->status_desc }} </p>
+                            <hr>
                             <p> <b>Mulai Magang :</b> <br> {{ $magang->mulai_magang }} </p>
                             <hr>
                             <p> <b>Selesai Magang :</b> <br> {{ $magang->instansi_pendidikan }} </p>
                             <hr>
                         </li>
-
-
-
-
                     </ul>
                 </div>
             </div>
