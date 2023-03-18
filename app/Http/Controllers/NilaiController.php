@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nilai;
 use App\Models\Magang;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -18,6 +19,8 @@ class NilaiController extends Controller
     {
         $header_page = "Halaman Nilai";
         $tidak = 'Belum Di input Pembimbing';
+
+
         if (Auth::user()->roles == 'user') {
             $magang = Magang::where('user_id', Auth::user()->id)->first();
             if ($request->has('search')) {

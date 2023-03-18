@@ -22,12 +22,18 @@
                             <hr>
                             <p> <b>Instansi :</b> <br> {{ $magang->instansi_pendidikan }} </p>
                             <hr>
-                            <p> <b>Status Terima :</b> <br> {{ $magang->status_desc }} </p>
-                            <hr>
                             <p> <b>Mulai Magang :</b> <br> {{ $magang->mulai_magang }} </p>
                             <hr>
                             <p> <b>Selesai Magang :</b> <br> {{ $magang->instansi_pendidikan }} </p>
                             <hr>
+                            <p> <b>Alasan Diterima  :</b> <br> {{ $magang->status_desc }} </p>
+                            <hr>
+                            <p><b>Status Di terima :</b><br>
+                                @if(Auth::user()->status == 'active' )
+                                    Status Diterima
+                                @endif
+                            </p>
+
                         </li>
                     </ul>
                 </div>
