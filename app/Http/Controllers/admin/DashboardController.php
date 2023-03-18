@@ -14,6 +14,7 @@ class DashboardController extends Controller
     public function index()
     {
         $tidak = 'Belum di isi';
+        $magang = Magang::where('user_id', Auth::user()->id)->first();
         $header_page = "Dashboard Menu";
         if (Auth::user()->roles == 'user') {
             $data = Magang::where('user_id', Auth::user()->id)->first();
@@ -30,8 +31,9 @@ class DashboardController extends Controller
                 "pembina" => Pembina::all()->count(),
                 "magang_aktif" => Magang::with(['pembina'])->where('status', 'active')->latest()->paginate(5)
             ];
+
         }
 
-        return view('admin.dashboard', compact('header_page', 'data', 'tidak'));
+        return view('admin.dashboard', compact('header_page', 'data', 'tidak','magang'));
     }
 }

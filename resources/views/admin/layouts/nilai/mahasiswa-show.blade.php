@@ -33,7 +33,6 @@
                                     Status Diterima
                                 @endif
                             </p>
-
                         </li>
                     </ul>
                 </div>
