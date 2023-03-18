@@ -28,7 +28,7 @@
                             <hr>
                             <p> <b>Alasan Diterima  :</b> <br> {{ $magang->status_desc }} </p>
                             <hr>
-                            <p><b>Status Di terima :</b><br>
+                            <p><b>Status Di Terima :</b><br>
                                 @if(Auth::user()->status == 'active' )
                                     Status Diterima
                                 @endif

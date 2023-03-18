@@ -71,30 +71,54 @@
 
 
             <div class="d-flex align-items-center justify-content-center">
-                <a href="{{ route('login') }}" class="btn btn-primary mx-auto">Back To Login</a>
+                <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <button type="submit" class="btn btn-primary mx-auto">Back To Login</button>
+                </form>
+
+
             </div>
+           <div class="text-center">
+            @if (Auth::user()->status == "active")
+            <hr>
+            <h5>Anda Diterima</h5>
+            @elseif (Auth::user()->status == 'inactive')
+            <hr>
+            <h5>Anda Sedang Di Proses Mohon menunggu</h5>
+            @else
+            Mohon maaf anda tidak diterima dengan segala pertimbangan kami mohon maaf
+            <hr>
+            @endif
+           </div>
         </div>
     </div>
 
 
-    <footer class=" fixed-bottom bg-secondary text-white">
-        <div class="row container p-4">
-            <div class="col-sm-9 text-white">
-                <h5 class="text-white">Direktorat Lalu Lintas Polda Nusa Tenggara Timur</h5>
-                <h5 class="text-white">Badan Pendapatan, Pengelola Keuangan Dan Aset Daerah Provinsi NTT</h5>
-                <h5 class="text-white">PT.Jasa Raharja (PERSERO) Cabang Kupang</h5>
-
-                <hr>
-
-                <h5 class="text-white">Kantor Samsat Kabupaten Manggarai</h5>
-                <p>Jln.Ranaka,Tenda,Kec,.Lengke Rambong, Kab.Manggarai, NTT</p>
-                <p style="color: #0099ff ;">(0385) 21730</p>
+    <footer class="fixed-bottom bg-secondary text-white">
+        <div class="container-fluid pt-2">
+          <div class="row ">
+            <div class="col-sm-9">
+              <div class="row">
+                <div class="col-12">
+                  <h5>Direktorat Lalu Lintas Polda Nusa Tenggara Timur</h5>
+                  <h5>Badan Pendapatan, Pengelola Keuangan Dan Aset Daerah Provinsi NTT</h5>
+                  <h5>PT.Jasa Raharja (PERSERO) Cabang Kupang</h5>
+                </div>
+                <div class="col-12">
+                  <hr>
+                  <h5>Kantor Samsat Kabupaten Manggarai</h5>
+                  <p>Jln.Ranaka,Tenda,Kec,.Lengke Rambong, Kab.Manggarai, NTT</p>
+                  <p style="color: #0099ff ;">(0385) 21730</p>
+                </div>
+              </div>
             </div>
             <div class="col-sm-3">
-                <img src="{{ asset('assets/img/desa-wisata-wae-rebo-12_169.jpeg') }}" alt="" style="width:70vh">
+              <img src="{{ asset('assets/img/desa-wisata-wae-rebo-12_169.jpeg') }}" alt="" style="width:100%">
             </div>
+          </div>
         </div>
-    </footer>
+      </footer>
+
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script src="../assets/vendor/libs/jquery/jquery.js"></script>
