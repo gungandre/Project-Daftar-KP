@@ -28,6 +28,13 @@
                     <hr>
                     <p> <b>Pembimbing Lapangan :</b> <br> {{ $data->Pembina->nama_pembina ?? '-' }} </p>
                     <hr>
+                    <p> <b>Alasan Diterima  :</b> <br> {{ $magang->status_desc }} </p>
+                    <hr>
+                    <p><b>Status Penerimaan Magang :</b><br>
+                        @if(Auth::user()->status == 'active' )
+                            Status Diterima
+                        @endif
+                    </p>
                 </li>
 
 
