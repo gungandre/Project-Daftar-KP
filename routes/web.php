@@ -26,6 +26,7 @@ use App\Http\Controllers\VerifikasiController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
+Route::get('waitform',[VerifikasiController::class,'waitForm'])->name('verifikasi.wait');
 Route::get('verifikasi',[VerifikasiController::class,'index'])->name('verifikasi.user');
 Route::middleware('auth', 'IsActive')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
