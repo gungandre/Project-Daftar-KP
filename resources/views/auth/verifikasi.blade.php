@@ -82,7 +82,7 @@
             @if (Auth::user()->status == "active")
             <hr>
             <h5>Anda Diterima</h5>
-            @elseif (Auth::user()->status == 'inactive')
+            @elseif ( Auth::user()->status == 'inactive')
             <hr>
             <h5>Anda Sedang Di Proses Mohon menunggu</h5>
             @else

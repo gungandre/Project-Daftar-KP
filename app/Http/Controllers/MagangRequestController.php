@@ -55,6 +55,6 @@ class MagangRequestController extends Controller
         );
 
         ModelsMagang::create($magang);
-        return redirect()->route('verifikasi.user')->with('message', 'Data created !');
+        return redirect()->route('verifikasi.wait')->with('message', 'Data created !');
     }
 }
