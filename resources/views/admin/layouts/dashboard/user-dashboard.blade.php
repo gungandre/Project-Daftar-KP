@@ -33,6 +33,10 @@
                     <p><b>Status Penerimaan Magang :</b><br>
                         @if(Auth::user()->status == 'active' )
                             Status Diterima
+                        @elseif (Auth::user()->status == 'inactive')
+                            Status Menunggu Jawaban
+                        @else
+                            Status Ditolak(reject)
                         @endif
                     </p>
                 </li>
