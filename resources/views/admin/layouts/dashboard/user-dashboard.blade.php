@@ -28,17 +28,19 @@
                     <hr>
                     <p> <b>Pembimbing Lapangan :</b> <br> {{ $data->Pembina->nama_pembina ?? '-' }} </p>
                     <hr>
-                    <p> <b>Alasan Diterima  :</b> <br> {{ $magang->status_desc }} </p>
-                    <hr>
+
                     <p><b>Status Penerimaan Magang :</b><br>
-                        @if(Auth::user()->status == 'active' )
-                            Status Diterima
+                        @if (Auth::user()->status == 'active')
+                            Diterima
                         @elseif (Auth::user()->status == 'inactive')
-                            Status Menunggu Jawaban
+                            Sedang Di Proses
                         @else
-                            Status Ditolak(reject)
+                            Ditolak
                         @endif
                     </p>
+                    <hr>
+                    <p> <b>Alasan Diterima :</b> <br> {{ $magang->status_desc }} </p>
+                    <hr>
                 </li>
 
 
