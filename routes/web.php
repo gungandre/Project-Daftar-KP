@@ -28,10 +28,9 @@ use App\Http\Controllers\VerifikasiController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('waitform',[VerifikasiController::class,'waitForm'])->name('verifikasi.wait');
 Route::get('verifikasi',[VerifikasiController::class,'index'])->name('verifikasi.user');
+Route::get('dasboard-reject',[VerifikasiController::class,'dasboardRe'])->name('verifikasi.reject');
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware('auth', 'IsActive')->group(function () {
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-
     Route::get('nilai',[NilaiController::class,"index"])->name('nilai.index');
     Route::put('nilai/update',[NilaiController::class,"update"])->name('nilai.update');
 
