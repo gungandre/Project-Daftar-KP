@@ -10,10 +10,10 @@ use Illuminate\Support\Facades\Auth;
 class VerifikasiController extends Controller
 {
     public function index(){
-        return view('auth.verifikasi');
+        return view('auth.waitform');
     }
     public function waitForm(){
-        return view('auth.waitform');
+        return view('auth.verifikasi');
     }
     public function dasboardRe(){
         $tidak = 'Belum di isi';
@@ -22,7 +22,6 @@ class VerifikasiController extends Controller
         if (Auth::user()->roles == 'user') {
             $data = Magang::where('user_id', Auth::user()->id)->first();
         }
-
         return view('admin.layouts.dashboard.reject', compact('header_page', 'data', 'tidak','magang'));
     }
 }

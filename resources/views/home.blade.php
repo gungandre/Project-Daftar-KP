@@ -88,7 +88,7 @@
             </div>
 
             <div class="p-4 col">
-                <h4>Penerimaan Mahasiswa Magang</h4>
+                {{-- <h4>Penerimaan Mahasiswa Magang</h4>
 
                 <div class="px-4 table-responsive-sm">
 
@@ -113,7 +113,7 @@
                             @endforelse
                         </tbody>
                     </table>
-                </div>
+                </div> --}}
             </div>
 
         </div>
