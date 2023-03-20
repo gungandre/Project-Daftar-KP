@@ -18,8 +18,12 @@ class IsActice
     public function handle(Request $request, Closure $next)
     {
         if ($request->user()->status != 'active') {
-            return redirect()->route('verifikasi.user');
+            return redirect()->route('verifikasi.wait');
         }
+        if ($request->user()->status == 'reject') {
+            return $next($request);
+        }
+
 
         return $next($request);
     }
