@@ -10,6 +10,7 @@ use App\Http\Controllers\MagangRequestController;
 use App\Http\Controllers\KegiatanMagangController;
 use App\Http\Controllers\admin\DashboardController;
 use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NilaiController;
 use App\Http\Controllers\VerifikasiController;
@@ -26,17 +27,17 @@ use App\Http\Controllers\VerifikasiController;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
-Route::get('waitform',[VerifikasiController::class,'waitForm'])->name('verifikasi.wait');
-Route::get('verifikasi',[VerifikasiController::class,'index'])->name('verifikasi.user');
-Route::get('dasboard-reject',[VerifikasiController::class,'dasboardRe'])->name('verifikasi.reject');
+Route::get('waitform', [VerifikasiController::class, 'waitForm'])->name('verifikasi.wait');
+Route::get('verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.user');
+Route::get('dasboard-reject', [VerifikasiController::class, 'dasboardRe'])->name('verifikasi.reject');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware('auth', 'IsActive')->group(function () {
-    Route::get('nilai',[NilaiController::class,"index"])->name('nilai.index');
-    Route::put('nilai/update',[NilaiController::class,"update"])->name('nilai.update');
+    Route::get('nilai', [NilaiController::class, "index"])->name('nilai.index');
+    Route::put('nilai/update', [NilaiController::class, "update"])->name('nilai.update');
 
-    Route::get('nilai/{nilai}',[NilaiController::class,"edit"])->name('nilai.edit')->middleware('CheckNilai');
+    Route::get('nilai/{nilai}', [NilaiController::class, "edit"])->name('nilai.edit')->middleware('CheckNilai');
 
-    Route::get('changePassword',[NewPasswordController::class,'create'])->name('profile.changePassword');
+    Route::get('changePassword', [NewPasswordController::class, 'create'])->name('profile.changePassword');
     Route::resource('userData', AbsenController::class);
     Route::middleware("roles.pembina")->group(function () {
         Route::resource('magang', MagangController::class);
@@ -50,6 +51,7 @@ Route::middleware('auth', 'IsActive')->group(function () {
         Route::get('kegiatan-magang/{file}/download', [KegiatanMagangController::class, 'downloadPDF'])->name('kegiatan-magang.download-pdf');
         Route::get('magang/{magang}/pembina', [MagangController::class, 'pembina'])->name('magang.pembina');
         Route::put('magang/{magang}/pembina', [MagangController::class, 'pembinaUpdate'])->name('magang.pembina-add');
+        Route::resource('divisi', DivisiController::class);
     });
 
     Route::middleware("roles.user")->group(function () {

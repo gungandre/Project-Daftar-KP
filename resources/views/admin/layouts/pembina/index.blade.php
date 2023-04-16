@@ -49,6 +49,7 @@
                                     <td>Nama Pembina</td>
                                     <td>Alamat</td>
                                     <td>Jabatan</td>
+                                    <td>Divisi</td>
                                     <td>Status</td>
                                     <td>Action</td>
                                 </tr>
@@ -60,6 +61,7 @@
                                         <td>{{ $pembina->nama_pembina }}</td>
                                         <td>{{ $pembina->alamat }}</td>
                                         <td>{{ $pembina->bagian_kerja }}</td>
+                                        <td>{{ $pembina->divisi->first()->nama_divisi ?? '-' }}</td>
                                         <td>
                                             <span
                                                 class="badge @if ($pembina->status == 'active') bg-success @else bg-danger @endif">{{ $pembina->status }}</span>
