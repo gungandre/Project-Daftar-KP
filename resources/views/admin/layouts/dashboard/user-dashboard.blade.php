@@ -10,7 +10,7 @@
             <ul class="list-group list-group-light">
                 <li class="" style="list-style: none
                 ">
-                    <p><b>Nama :</b> <br> {{ $data->nama_lengkap }}</p>
+                    <p><b>Nama :</b> <br> {{ $data->user->nama_lengkap }}</p>
                     <hr>
                     <p> <b>NIM :</b> <br> {{ $data->nim_nis }}</p>
                     <hr>
@@ -39,7 +39,12 @@
                         @endif
                     </p>
                     <hr>
-                    <p> <b>Alasan Diterima :</b> <br> {{ $magang->status_desc }} </p>
+                    @if ($data->status == 'ditolak')
+                        <p> <b>Alasan Diterima :</b> <br> {{ $magang->HistoryMagang->keterangan }} </p>
+                    @elseif($data->status == 'active')
+                        <p> <b>Alasan Diterima :</b> <br> {{ $magang->status_desc }} </p>
+                    @endif
+
                     <hr>
                 </li>
 
