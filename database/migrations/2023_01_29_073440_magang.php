@@ -17,12 +17,10 @@ class Magang extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id')->unique();
             $table->unsignedBigInteger('id_pembina')->nullable();
-            $table->string('nama_lengkap');
             $table->longText('nim_nis');
             $table->longText('alamat');
             $table->string('no_hp');
             $table->string('email');
-            $table->string('password')->nullable();
             $table->string('instansi_pendidikan');
             $table->string('jurusan');
             $table->date('mulai_magang')->nullable();

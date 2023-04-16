@@ -28,9 +28,28 @@
         </div>
         <div class="col-lg-6">
             <div class="mb-3">
+                <label for="no_hp" class="form-label">Divisi</label>
+                <select name="divisi_model_id" class="form-control">
+                    <option value="" disabled selected>-- Pilih Divisi --</option>
+                    @forelse ($divisi as $data)
+                        <option value="{{ $data->id }}"
+                            @isset($divisi_pivot)
+                            @if ($divisi_pivot->divisi_model_id == $data->id) selected @endif
+                        @endisset>
+                            {{ $data->nama_divisi }}</option>
+                    @empty
+                    @endforelse
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="bagian_kerja" class="form-label">Bagian Kerja</label>
                 <input type="text" name="bagian_kerja" id="bagian_kerja" class="form-control" placeholder="Jabatan"
                     value="{{ $pembina->bagian_kerja }}">
+            </div>
+            <div class="mb-3">
+                <label for="no_hp" class="form-label">Ruangan</label>
+                <input type="text" name="ruangan" id="ruangan" class="form-control" placeholder="Ruangan"
+                    value="{{ $divisi_pivot->ruangan ?? null }}">
             </div>
             <div class="mb-3">
                 <label for="no_hp" class="form-label">No Hp</label>
@@ -41,8 +60,8 @@
                 <label for="status" class="form-label">Status</label>
                 <select name="status" id="status" class="form-control">
                     <option value="" disabled selected>-- Pilih Status --</option>
-                    <option value="aktif" @if ($pembina->status == 'aktif') selected @endif>Aktif</option>
-                    <option value="tidak_aktif" @if ($pembina->status == 'tidak_aktif') selected @endif>Tidak aktif</option>
+                    <option value="active" @if ($pembina->status == 'active') selected @endif>active</option>
+                    <option value="deactive" @if ($pembina->status == 'deactive') selected @endif>deactive</option>
                 </select>
             </div>
 

@@ -35,19 +35,34 @@
                 <input type="text" name="email" id="email" class="form-control" placeholder="email">
             </div>
             <div class="mb-3">
+                <label for="no_hp" class="form-label">Divisi</label>
+                <select name="divisi_model_id" class="form-control">
+                    <option value="" disabled selected>-- Pilih Divisi --</option>
+                    @forelse ($divisi as $data)
+                        <option value="{{ $data->id }}">{{ $data->nama_divisi }}</option>
+                    @empty
+                    @endforelse
+                </select>
+            </div>
+            <div class="mb-3">
                 <label for="bagian_kerja" class="form-label">Bagian Kerja</label>
                 <input type="text" name="bagian_kerja" id="bagian_kerja" class="form-control" placeholder="Jabatan">
+            </div>
+            <div class="mb-3">
+                <label for="no_hp" class="form-label">Ruangan</label>
+                <input type="text" name="ruangan" id="ruangan" class="form-control" placeholder="Ruangan">
             </div>
             <div class="mb-3">
                 <label for="no_hp" class="form-label">No Hp</label>
                 <input type="text" name="no_hp" id="no_hp" class="form-control" placeholder="nomor phone">
             </div>
 
+
         </div>
 
     </div>
 
-    <div class="d-flex gap-2">
+    <div class="gap-2 d-flex">
         <button type="submit" class="btn btn-primary d-block">Submit</button>
         <button type="rest" class="btn btn-secondary">Reset</button>
     </div>

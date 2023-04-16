@@ -39,7 +39,6 @@ class MagangRequestController extends Controller
 
         $magang = array(
             'user_id' => $user->id,
-            'nama_lengkap' => $request->nama_lengkap,
             'nim_nis' => $request->nim_nis,
             'alamat' => $request->alamat,
             'instansi_pendidikan' => $request->instansi_pendidikan,
