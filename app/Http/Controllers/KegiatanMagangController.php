@@ -105,7 +105,7 @@ class KegiatanMagangController extends Controller
      */
     public function destroy(KegiatanMagang $kegiatanMagang)
     {
-        //
+
     }
 
 }

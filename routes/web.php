@@ -13,6 +13,7 @@ use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\DivisiController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NilaiController;
+use App\Http\Controllers\PeriodeController;
 use App\Http\Controllers\VerifikasiController;
 
 /*
@@ -67,7 +68,7 @@ Route::middleware("roles.user")->group(function () {
 });
 
 Route::get('reques-login', [MagangRequestController::class, 'index'])->name('magang.request');
-Route::get('daftar-magang', [MagangRequestController::class, 'index'])->name('magang.request');
+Route::get('daftar-magang', [MagangRequestController::class, 'index'])->name('magang.request')->middleware('Periode');
 Route::post('request-store', [MagangRequestController::class, 'requestForm'])->name('magang.storerequest');
 
 Auth::routes([
@@ -75,3 +76,11 @@ Auth::routes([
     'verify' => false, // Email Verification Routes...
 ]);
 require __DIR__ . '/auth.php';
+
+
+
+
+
+Route::resource('Periode',PeriodeController::class);
+
+Route::get('Periode/inactive/{periode}',[PeriodeController::class,'inActivePeriode'])->name('periode.inactive');

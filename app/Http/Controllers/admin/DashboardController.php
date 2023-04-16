@@ -27,8 +27,8 @@ class DashboardController extends Controller
             ];
         } else {
             $data = [
-                "magang" => Magang::all()->count(),
-                "pembina" => Pembina::all()->count(),
+                "magang" => Magang::all()->where('status', 'active')->count(),
+                "pembina" => Pembina::all()->where('status', 'active')->count(),
                 "magang_aktif" => Magang::with(['pembina'])->where('status', 'active')->latest()->paginate(5)
             ];
 

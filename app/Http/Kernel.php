@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
         'roles.user' => \App\Http\Middleware\RolesUser::class,
         'IsActive' => \App\Http\Middleware\IsActice::class,
         'CheckNilai' => \App\Http\Middleware\CheckNilai::class,
+        'Periode' => \App\Http\Middleware\Periode::class,
     ];
 }
