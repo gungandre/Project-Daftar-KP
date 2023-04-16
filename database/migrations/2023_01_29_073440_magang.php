@@ -25,9 +25,9 @@ class Magang extends Migration
             $table->string('jurusan');
             $table->date('mulai_magang')->nullable();
             $table->date('selesai_magang')->nullable();
-            $table->string('foto');
+            $table->string('foto')->nullable();
             $table->string('surat_magang')->nullable();
-            $table->string('status');
+            $table->string('status')->default("inactive");
             $table->string('status_desc')->default('Menunggu');
             $table->foreign('id_pembina')->references('id')->on('pembina');
             $table->foreign('user_id')->references('id')->on('users');

@@ -29,11 +29,10 @@ use App\Http\Controllers\VerifikasiController;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('waitform', [VerifikasiController::class, 'waitForm'])->name('verifikasi.wait');
 Route::get('verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.user');
-Route::get('dasboard-reject', [VerifikasiController::class, 'dasboardRe'])->name('verifikasi.reject');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware('auth', 'IsActive')->group(function () {
-    Route::get('nilai',[NilaiController::class,"index"])->name('nilai.index');
-    Route::put('nilai/update/{nilai}',[NilaiController::class,"update"])->name('nilai.update');
+    Route::get('nilai', [NilaiController::class, "index"])->name('nilai.index');
+    Route::put('nilai/update/{nilai}', [NilaiController::class, "update"])->name('nilai.update');
 
     Route::get('nilai/{nilai}', [NilaiController::class, "edit"])->name('nilai.edit')->middleware('CheckNilai');
 
@@ -60,6 +59,11 @@ Route::middleware('auth', 'IsActive')->group(function () {
         Route::put('magang/{magang}/updateMagang', [MagangController::class, 'updateMagang'])->name('magang.updatemangang');
         Route::resource('user-absen', AbsenController::class);
     });
+});
+
+Route::middleware("roles.user")->group(function () {
+    Route::get('magang/{magang}/editMagang', [MagangController::class, 'editMagang'])->name('magang.editprofile');
+    Route::put('magang/{magang}/updateMagang', [MagangController::class, 'updateMagang'])->name('magang.updatemangang');
 });
 
 Route::get('reques-login', [MagangRequestController::class, 'index'])->name('magang.request');

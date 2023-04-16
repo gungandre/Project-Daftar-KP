@@ -24,9 +24,9 @@ class MagangController extends Controller
 
         if ($request->has('search')) {
 
-            $magangs = (Auth::user()->roles == 'admin') ? Magang::with(["pembina"])->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina"])->where("id_pembina", Auth::user()->id)->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : "");
+            $magangs = (Auth::user()->roles == 'admin') ? Magang::with(["pembina", 'HistoryMagang'])->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina"])->where("id_pembina", Auth::user()->id)->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : "");
         } else {
-            $magangs = (Auth::user()->roles == 'admin') ? Magang::with(['pembina'])->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina"])->where("id_pembina", Auth::user()->pembina->id)->latest()->paginate(5) : "");
+            $magangs = (Auth::user()->roles == 'admin') ? Magang::with(['pembina', 'HistoryMagang'])->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina", 'HistoryMagang'])->where("id_pembina", Auth::user()->pembina->id)->latest()->paginate(5) : "");
         }
 
         return view('admin.layouts.magangs.index', compact('magangs', 'header_page'));
@@ -48,10 +48,10 @@ class MagangController extends Controller
         $magang->update(["id_pembina" => $data['nama_pembina']]);
         $item = [
             'magang_id' => $magang->id,
-            ];
+        ];
         $nilai = Nilai::create($item);
         NilaiKeterangan::create(
-            ['nilai_id' =>$nilai->id]
+            ['nilai_id' => $nilai->id]
         );
         return redirect()->route('magang.index')->with("message_success", "Pembina Magang berhasil ditambahkan");
     }
@@ -116,10 +116,22 @@ class MagangController extends Controller
 
     public function changeStatus(Request $request, Magang $magang)
     {
+
         $data = $request->all();
-        $magang->update(['status_desc'=>$data['status_desc']]);
+        $magang->update(['status_desc' => $data['status_desc']]);
         $magang->update(['status' => $data['status']]);
         $magang->user->update(['status' => $data['status']]);
+
+        if ($data["status"] == "ditolak" && is_null($magang->HistoryMagang)) {
+            $magang->HistoryMagang()->create([
+                "tanggal_penolakan" => now("GMT+8"),
+                "keterangan" => $data["status_desc"]
+            ]);
+        }
+
+        if ($data["status"] == "active" && !is_null($magang->HistoryMagang)) {
+            $magang->HistoryMagang()->delete();
+        }
 
         return redirect()->route('magang.index')->with("message_success", "Status Magang Telah Di Perbaharui");
     }
@@ -183,6 +195,13 @@ class MagangController extends Controller
             'surat_magang' => $filedocoment,
         ];
         $magang->update($data);
+
+        if ($magang->status == "ditolak") {
+            $magang->HistoryMagang()->update([
+                "status_permintaan_pertimbangan" => "waiting"
+            ]);
+        }
+
         return redirect()->route('dashboard');
     }
 }

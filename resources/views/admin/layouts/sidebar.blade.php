@@ -13,7 +13,7 @@
           <div class="flex-row menu-header justify-content-center">
               <img src="{{ asset('assets/img/Lambang_Kabupaten_Manggarai-150x150.png') }}" style="max-width:100px "
                   class="" alt="">
-              <p class="">Kantor Samsat <br> Kabupate Manggarai</p>
+              <p class="">Kantor Samsat <br> Kabupaten Manggarai</p>
           </div>
           <!-- Dashboard -->
           <li class="menu-item @if (Request()->route()->getName() == 'dashboard') active @endif">

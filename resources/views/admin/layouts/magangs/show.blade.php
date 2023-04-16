@@ -12,12 +12,33 @@
 
                 <div class="card-body">
 
+                    @if (!is_null($magang->HistoryMagang))
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="status_pertimbangan" class="form-label">Status Pertimbangan</label>
+                                    <input type="text" name="status_pertimbangan" id="nama-lengkap"
+                                        value="{{ $magang->HistoryMagang->status_permintaan_pertimbangan }}"
+                                        class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <div class="mb-3">
+                                    <label for="keterangan" class="form-label">Status Pertimbangan</label>
+                                    <input type="text" name="keterangan" id="nama-lengkap"
+                                        value="{{ $magang->HistoryMagang->keterangan }}" class="form-control" readonly>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    @endif
+
                     <div class="row">
                         <div class="col">
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama Lengkap</label>
                                 <input type="text" name="nama_lengkap" id="nama-lengkap"
-                                    value="{{ $magang->nama_lengkap }}" class="form-control" readonly>
+                                    value="{{ $magang->user->nama_lengkap }}" class="form-control" readonly>
                             </div>
                             <div class="mb-3">
                                 <label for="" class="form-label">NIM</label>
@@ -52,7 +73,7 @@
                             <div class="mb-3">
                                 <label for="nama" class="form-label">Nama Pembina</label>
                                 <input type="text" name="" id=""
-                                    value="{{ $magang->pembina->nama_pembina  ?? null}}" class="form-control" readonly>
+                                    value="{{ $magang->pembina->nama_pembina ?? null }}" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="col">

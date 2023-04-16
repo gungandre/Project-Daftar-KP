@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col-lg-6">
 
-                            <div class="form-group mb-3">
+                            <div class="mb-3 form-group">
                                 <form action="{{ route('magang.index') }}" method="get">
 
                                     @csrf
@@ -36,7 +36,7 @@
                     </div>
 
 
-                    <div class="table-responsive-sm">
+                    <div class="table-responsive">
 
                         <table class="table mb-5 table-striped">
                             <thead>
@@ -47,6 +47,7 @@
                                     <td>Nim</td>
                                     <td>email</td>
                                     <td>Instansi</td>
+                                    <td>Status Pertimbangan</td>
                                     <td>Status</td>
                                     <td>Action</td>
                                 </tr>
@@ -62,10 +63,15 @@
                                                 -
                                             @endif
                                         </td>
-                                        <td>{{ $magang->nama_lengkap }}</td>
+                                        <td>{{ $magang->user->nama_lengkap }}</td>
                                         <td>{{ $magang->nim_nis }}</td>
                                         <td>{{ $magang->email }}</td>
                                         <td>{{ $magang->instansi_pendidikan }}</td>
+                                        @if ($magang->status == 'ditolak')
+                                            <td>{{ $magang->HistoryMagang->status_permintaan_pertimbangan }}</td>
+                                        @else
+                                            <td>--</td>
+                                        @endif
                                         <td>
                                             <span
                                                 class="badge @if ($magang->status == 'active') bg-success @else bg-danger @endif">{{ $magang->status }}</span>
@@ -78,7 +84,15 @@
                                                 <div class="dropdown-menu">
                                                     <a class="dropdown-item"
                                                         href="{{ route('magang.edit', $magang->id) }}"><i
-                                                            class="bx bx-edit-alt me-1"></i>Edit Status</a>
+                                                            class="bx bx-edit-alt me-1"></i>
+
+                                                        @if (!is_null($magang->HistoryMagang) && $magang->HistoryMagang->status_permintaan_pertimbangan == 'waiting')
+                                                            Lihat Pertimbangan
+                                                        @else
+                                                            Edit Status
+                                                        @endif
+
+                                                    </a>
                                                     @if (Auth::user()->roles == 'admin' && is_null($magang->pembina) && $magang->status == 'active')
                                                         <a class="dropdown-item"
                                                             href="{{ route('magang.pembina', $magang->id) }}"><i
