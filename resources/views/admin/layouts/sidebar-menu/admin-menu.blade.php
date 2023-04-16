@@ -30,3 +30,11 @@
           <div>Data Divisi</div>
       </a>
   </li>
+
+  <li class="menu-item">
+    <a href="{{ route('Periode.index') }}" class="menu-link">
+        <i class='menu-icon bx bxs-user-account'></i>
+        <div>Buka Pendaftaran Magang</div>
+    </a>
+</li>
+<br>

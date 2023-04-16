@@ -9,9 +9,16 @@
     </div>
 
     <div class="col-lg-6 d-flex align-items-center">
-        <i class='bx bxs-group' style="font-size:10rem; color:#000;"></i>
-        <div>
-            <h4>Jumlah Magang</h4>
+
+        @if ($data['magang'] >= 20)
+            <i class='bx bxs-group' style="font-size:10rem; color:red;"></i>
+            <div>
+                <h4>Jumlah Magang Penuh</h4>
+            @else
+            <i class='bx bxs-group' style="font-size:10rem; color:#000;"></i>
+            <div>
+                <h4>Jumlah Magang</h4>
+            @endif
             <h4>{{ $data['magang'] }}</h4>
         </div>
     </div>
