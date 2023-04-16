@@ -11,13 +11,25 @@ class Nilai extends Model
 
     protected $table = "nilai";
     protected $fillable = [
-        'magang_id',
-        'nilai',
-        'keterangan'
+        'etika',
+        'tugas',
+        'absen',
+        'tanggung_jawab',
+        'kerjasama',
+        'inisiatif',
+        'skill',
+        'total_nilai',
+        'total_rata',
+        'keterangan',
+        'ubah_nilai',
+        'magang_id'
     ];
 
     public function magang()
     {
-        return $this->belongsTo(Magang::class);
+        return $this->belongsTo(Magang::class,'magang_id','id');
+    }
+    public function nilaiKet(){
+        return $this->hasOne(NilaiKeterangan::class,'nilai_id','id' );
     }
 }

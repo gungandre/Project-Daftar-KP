@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\admin\Pembina as AdminPembina;
 use App\Models\Nilai;
+use App\Models\NilaiKeterangan;
 
 class MagangController extends Controller
 {
@@ -45,8 +46,13 @@ class MagangController extends Controller
         $data = $request->all();
 
         $magang->update(["id_pembina" => $data['nama_pembina']]);
-        Nilai::create(['magang_id' => $magang->id]);
-
+        $item = [
+            'magang_id' => $magang->id,
+            ];
+        $nilai = Nilai::create($item);
+        NilaiKeterangan::create(
+            ['nilai_id' =>$nilai->id]
+        );
         return redirect()->route('magang.index')->with("message_success", "Pembina Magang berhasil ditambahkan");
     }
 

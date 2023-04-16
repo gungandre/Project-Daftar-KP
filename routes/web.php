@@ -32,7 +32,7 @@ Route::get('dasboard-reject',[VerifikasiController::class,'dasboardRe'])->name('
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 Route::middleware('auth', 'IsActive')->group(function () {
     Route::get('nilai',[NilaiController::class,"index"])->name('nilai.index');
-    Route::put('nilai/update',[NilaiController::class,"update"])->name('nilai.update');
+    Route::put('nilai/update/{nilai}',[NilaiController::class,"update"])->name('nilai.update');
 
     Route::get('nilai/{nilai}',[NilaiController::class,"edit"])->name('nilai.edit')->middleware('CheckNilai');
 
