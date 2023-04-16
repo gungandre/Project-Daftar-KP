@@ -24,3 +24,9 @@
           <div>Nilai</div>
       </a>
   </li>
+  <li class="menu-item">
+      <a href="{{ route('divisi.index') }}" class="menu-link">
+          <i class='menu-icon bx bxs-user-account'></i>
+          <div>Data Divisi</div>
+      </a>
+  </li>

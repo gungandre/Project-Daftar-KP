@@ -4,6 +4,7 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\admin\Pembina;
 use App\Http\Controllers\Controller;
+use App\Models\DivisiModel;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,7 +22,9 @@ class PembinaController extends Controller
     {
         $header_page = "Data Pembina";
 
-        $pembinas = ($request->has('search')) ? Pembina::where('nama_pembina', 'like', "%" . $request->search . "%")->latest()->paginate(3)->appends(['search' => $request->search]) : Pembina::toBase()->latest()->paginate(5);
+        $pembina = Pembina::with('divisi');
+
+        $pembinas = ($request->has('search')) ? $pembina->where('nama_pembina', 'like', "%" . $request->search . "%")->latest()->paginate(3)->appends(['search' => $request->search]) : $pembina->latest("updated_at")->paginate(5);
 
         return view('admin.layouts.pembina.index', compact('header_page', 'pembinas'));
     }
@@ -35,7 +38,9 @@ class PembinaController extends Controller
     {
         $header_page = "Create Pembina";
 
-        return view('admin.layouts.pembina.form', compact('header_page'));
+        $divisi = DivisiModel::toBase()->get();
+
+        return view('admin.layouts.pembina.form', compact('header_page', 'divisi'));
     }
 
     /**
@@ -69,14 +74,19 @@ class PembinaController extends Controller
 
             $getUser = $user->toBase()->first();
 
-            Pembina::create([
+            $pembina = Pembina::create([
                 "user_id" => $getUser->id,
                 "nama_pembina" => $request->nama_pembina,
                 "alamat" => $request->alamat,
                 "bagian_kerja" => $request->bagian_kerja,
                 "no_hp" => $request->no_hp,
                 "status" => "active",
-                "created_at" => now()->toDateString()
+                "created_at" => now()->toDateString(),
+                "updated_at" => now()->toDateString()
+            ]);
+
+            $pembina->divisi()->attach($request->divisi_model_id, [
+                "ruangan" => $request->ruangan
             ]);
 
             return redirect()->route('pembina.index')->with('message', 'data pembina berhasil dibuat');
@@ -104,7 +114,10 @@ class PembinaController extends Controller
     public function edit(Pembina $pembina)
     {
         $header_page = "Edit Pembina";
-        return view('admin.layouts.pembina.form', compact('header_page', 'pembina'));
+        $divisi_pivot = $pembina->divisi->first()->pivot ?? null;
+
+        $divisi = DivisiModel::toBase()->get();
+        return view('admin.layouts.pembina.form', compact('header_page', 'pembina', 'divisi', 'divisi_pivot'));
     }
 
     /**
@@ -145,6 +158,10 @@ class PembinaController extends Controller
 
         try {
             $pembina->update($pembinaData);
+            $pembina->divisi()->detach();
+            $pembina->divisi()->attach($request->divisi_model_id, [
+                "ruangan" => $request->ruangan
+            ]);
             $pembina->user->update($usersData);
 
             return redirect()->route('pembina.index')->with("message", "Update Pembina Success");
