@@ -34,7 +34,7 @@
                                     <td>Instansi Pendidikan</td>
                                     <td>Mulai Magang</td>
                                     <td>Selesai Magang</td>
-                                    <td>Nilai</td>
+                                    <td>Nilai Rata Rata</td>
                                     <td>Keterangan</td>
                                     <td>Action</td>
                                 </tr>
@@ -48,17 +48,17 @@
                                         <td>{{ $data->magang->mulai_magang }}</td>
                                         <td>{{ $data->magang->selesai_magang }}</td>
                                         <td>
-                                            @if (is_null($data->nilai))
+                                            @if (is_null($data->total_rata))
                                                 -
                                             @else
-                                                {{ $data->nilai }}
+                                                {{ $data->total_rata }}
                                             @endif
                                         </td>
                                         <td>
                                             @if (is_null($data->keterangan))
                                                 -
                                             @else
-                                                {{ $data->keterangan }}
+                                            {{ substr($data->keterangan, 0, 10) . (strlen($data->keterangan) > 10 ? '...' : '') }}
                                             @endif
                                         </td>
                                         </td>

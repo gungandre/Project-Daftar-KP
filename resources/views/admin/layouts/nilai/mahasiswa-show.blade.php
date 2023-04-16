@@ -41,20 +41,69 @@
     </div>
 
     <div class="d-flex flex-row  card my-4 mb-3 p-3">
-        <div class="col p-5">
-        <img src="{{ asset('assets/img/Capture.PNG') }}" alt="" style="max-width: 400px">
+        <div class="col">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Nilai</th>
+                    <th scope="col">Satuan Nilai</th>
+                    <th scope="col">Keterangan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Etika</td>
+                    <td>{{$nilais->etika}}</td>
+                    <td>{{$nilais->nilaiKet->ket_etika}}</td>
+                  </tr>
+                  <tr>
+                    <td>Tugas</td>
+                    <td>{{$nilais->tugas}}</td>
+                    <td>{{$nilais->nilaiKet->ket_tugas}}</td>
+                  </tr>
+                  <tr>
+                    <td>Absen</td>
+                    <td>{{$nilais->absen}}</td>
+                    <td>{{$nilais->nilaiKet->ket_absen}}</td>
+                  </tr>
+                  <tr>
+                    <td>Tanggung Jawab</td>
+                    <td>{{$nilais->tanggung_jawab}}</td>
+                    <td>{{$nilais->nilaiKet->ket_tanggung_jawab}}</td>
+                  </tr>
+                  <tr>
+                    <td>Kerjasama</td>
+                    <td>{{$nilais->kerjasama}}</td>
+                    <td>{{$nilais->nilaiKet->ket_kerjasama}}</td>
+                  </tr>
+                  <tr>
+                    <td>Inisiatif</td>
+                    <td>{{$nilais->inisiatif}}</td>
+                    <td>{{$nilais->nilaiKet->ket_inisiatif}}</td>
+                  </tr>
+                  <tr>
+                    <td>Skill</td>
+                    <td>{{$nilais->skill}}</td>
+                    <td>{{$nilais->nilaiKet->ket_skill}}</td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">Total Nilai</td>
+                    <td>{{$nilais->total_nilai}}</td>
+                  </tr>
+                </tbody>
+              </table>
         </div>
         <div class="col">
             <div class="card-body">
-                <h3>Nilai : </h3>
+                <h3>Nilai Rata Rata : </h3>
                 <div class="card p-5 shadow ">
-                    <h1>{{ $nilais->nilai ?? $tidak }}</h1>
+                    <h1>{{ $nilais->total_rata ?? $tidak }}</h1>
                 </div>
             </div>
             <div class="card-body">
-                <h3>Keterangan : </h3>
+                <h3>Keterangan Maggang : </h3>
                 <div class="card p-5 shadow ">
-                    <h1>{{ $nilais->keterangan ?? $tidak }}</h1>
+                    <h4>{{ $nilais->keterangan ?? $tidak }}</h4>
                 </div>
             </div>
         </div>

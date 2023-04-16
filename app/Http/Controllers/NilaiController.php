@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Nilai;
 use App\Models\Magang;
+use App\Models\NilaiKeterangan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -97,13 +98,50 @@ class NilaiController extends Controller
      * @param  \App\Models\Nilai  $nilai
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request,Nilai $nilai)
     {
-        $nilai = Nilai::find($request->idNilai);
-        $nilai->update([
-            'nilai' => $request->nilai,
-            'keterangan' => $request->keterangan
-        ]);
+        $dataReqeust = $request->all();
+
+        $nilaiEtika = $request->etika;
+        $nilaiTugas = $request->tugas;
+        $nilaiAbsen = $request->absen;
+        $nilaiTanggungJawab = $request->tanggung_jawab;
+        $nilaiKerjasama = $request->kerjasama;
+        $nilaiInisiatif = $request->inisiatif;
+        $nilaiSkill = $request->skill;
+
+        $totalNilai = $nilaiEtika + $nilaiTugas + $nilaiAbsen + $nilaiTanggungJawab + $nilaiInisiatif + $nilaiSkill + $nilaiKerjasama;
+
+        $rataNilai = $totalNilai / 7;
+        $rataNilaiFormatted = number_format($rataNilai, 2);
+
+        $dataNilai = [
+            'nilai' => $dataReqeust['etika'],
+            'tugas' => $dataReqeust['tugas'],
+            'absen' => $dataReqeust['absen'],
+            'tanggung_jawab' => $dataReqeust['tanggung_jawab'],
+            'kerjasama' => $dataReqeust['kerjasama'],
+            'inisiatif' => $dataReqeust['inisiatif'],
+            'skill' => $dataReqeust['skill'],
+            'total_nilai' => $totalNilai,
+            'total_rata' => $rataNilaiFormatted,
+            'keterangan' => $dataReqeust['keterangan']
+        ];
+        $nilai->update($dataNilai);
+        $dataKet = [
+            'ket_etika' => $dataReqeust['ket_etika'],
+            'ket_tugas' => $dataReqeust['ket_tugas'],
+            'ket_absen' => $dataReqeust['ket_absen'],
+            'ket_tanggung_jawab' => $dataReqeust['ket_tanggung_jawab'],
+            'ket_kerjasama' => $dataReqeust['ket_kerjasama'],
+            'ket_inisiatif' => $dataReqeust['ket_inisiatif'],
+            'ket_skill' => $dataReqeust['ket_skill'],
+        ];
+
+
+        $dataKeterangan = NilaiKeterangan::where('nilai_id',$nilai->id)->first();
+
+        $dataKeterangan->update($dataKet);
 
         return redirect()->route('nilai.index')->with('message', 'Nilai Sudah Dimasukan');
     }
