@@ -42,7 +42,7 @@
                 @foreach ($data['magang_aktif'] as $magang)
                     <tr>
                         <td>{{ $data['magang_aktif']->firstItem() + $loop->index }}</td>
-                        <td>{{ $magang->nama_lengkap }}</td>
+                        <td>{{ $magang->User->nama_lengkap }}</td>
                         <td>{{ $magang->instansi_pendidikan }}</td>
                         <td>{{ $magang->jurusan }}</td>
                         <td>{{ $magang->mulai_magang }}</td>

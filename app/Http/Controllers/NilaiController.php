@@ -87,8 +87,9 @@ class NilaiController extends Controller
     public function edit(Nilai $nilai)
     {
         $header_page = "Halaman Nilai";
+        $magang = Magang::find($nilai->magang_id);
 
-        return view('admin.layouts.nilai.edit', compact('nilai', 'header_page'));
+        return view('admin.layouts.nilai.edit', compact('nilai', 'magang','header_page'));
     }
 
     /**

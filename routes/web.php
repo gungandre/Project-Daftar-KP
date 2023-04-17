@@ -26,7 +26,7 @@ use App\Http\Controllers\VerifikasiController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::delete('magang-delete/{magang}',[MagangController::class,'deleteReject'])->name('magang.deleteReject');
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('waitform', [VerifikasiController::class, 'waitForm'])->name('verifikasi.wait');
 Route::get('verifikasi', [VerifikasiController::class, 'index'])->name('verifikasi.user');

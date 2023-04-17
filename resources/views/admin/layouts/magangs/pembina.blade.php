@@ -19,7 +19,7 @@
                                 <div class="mb-3">
                                     <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                                     <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control"
-                                        value="{{ $magang->nama_lengkap }}" readonly>
+                                        value="{{ $magang->User->nama_lengkap }}" readonly>
                                 </div>
 
                                 <div class="mb-3">

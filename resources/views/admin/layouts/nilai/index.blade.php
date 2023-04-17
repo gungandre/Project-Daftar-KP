@@ -2,9 +2,7 @@
 @section('title', 'Data Nilai')
 @section('content')
     <div class="row">
-
         <div class="mb-4 col-lg-12">
-
             <div class="card">
                 <div class="card-body">
                     @if (session('message_success'))
@@ -14,7 +12,6 @@
                         <div class="alert alert-danger">{{ session('message_failed') }}</div>
                     @endif
                     <div class="row">
-
                         <div class="col-lg-6">
                             <div class="form-group mb-3">
                                 <form action="{{ route('nilai.index') }}" method="get">
@@ -35,6 +32,7 @@
                                     <td>Mulai Magang</td>
                                     <td>Selesai Magang</td>
                                     <td>Nilai Rata Rata</td>
+                                    <td>Total Nilai</td>
                                     <td>Keterangan</td>
                                     <td>Action</td>
                                 </tr>
@@ -43,7 +41,7 @@
                                 @foreach ($nilais as $data)
                                     <tr>
                                         <td>{{ $nilais->firstItem() + $loop->index }}</td>
-                                        <td>{{ $data->magang->nama_lengkap }}</td>
+                                        <td>{{ $data->magang->User->nama_lengkap }}</td>
                                         <td>{{ $data->magang->instansi_pendidikan }}</td>
                                         <td>{{ $data->magang->mulai_magang }}</td>
                                         <td>{{ $data->magang->selesai_magang }}</td>
@@ -53,6 +51,13 @@
                                             @else
                                                 {{ $data->total_rata }}
                                             @endif
+                                        </td>
+                                        <td>
+                                            @if (is_null($data->total_nilai))
+                                            -
+                                        @else
+                                            {{ $data->total_nilai }}
+                                        @endif
                                         </td>
                                         <td>
                                             @if (is_null($data->keterangan))

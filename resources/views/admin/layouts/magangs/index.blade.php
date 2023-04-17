@@ -48,6 +48,7 @@
                                     <td>email</td>
                                     <td>Instansi</td>
                                     <td>Status Pertimbangan</td>
+                                    <td>Devisi Pembina</td>
                                     <td>Status</td>
                                     <td>Action</td>
                                 </tr>
@@ -67,11 +68,20 @@
                                         <td>{{ $magang->nim_nis }}</td>
                                         <td>{{ $magang->email }}</td>
                                         <td>{{ $magang->instansi_pendidikan }}</td>
-                                        @if ($magang->status == 'ditolak')
+                                        @if ($magang->pembina == 'ditolak')
                                             <td>{{ $magang->HistoryMagang->status_permintaan_pertimbangan }}</td>
                                         @else
                                             <td>--</td>
                                         @endif
+                                        <td>
+                                            @if ($magang->PembinaCopty)
+                                            @foreach ($magang->PembinaCopty->divisi as $divisi)
+                                                {{ $divisi->nama_divisi }}
+                                            @endforeach
+                                            @else
+                                           --
+                                        @endif
+                                        </td>
                                         <td>
                                             <span
                                                 class="badge @if ($magang->status == 'active') bg-success @else bg-danger @endif">{{ $magang->status }}</span>

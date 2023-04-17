@@ -20,7 +20,7 @@
                         <div class="mb-3">
                             <label for="nama_lengkap" class="form-label">Nama Lengkap</label>
                             <input type="text" name="nama_lengkap" id="nama_lengkap" class="form-control"
-                                value="{{ $magang->user->nama_lengkap }}" readonly>
+                                value="{{ $magang->User->nama_lengkap }}" readonly>
                         </div>
 
                         <div class="mb-3">
@@ -48,7 +48,7 @@
                         @if (!is_null($magang->HistoryMagang))
                             <hr>
                             <div class="mb-3">
-                                <label for="status" class="form-label">Status Pertimbangan</label>
+                                <label for="status" class="form-label">Devisi</label>
                                 <input type="text" class="form-control"
                                     value="{{ $magang->HistoryMagang->status_permintaan_pertimbangan }}" readonly
                                     name="status_permintaan_pertimbangan">

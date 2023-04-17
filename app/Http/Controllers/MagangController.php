@@ -26,6 +26,7 @@ class MagangController extends Controller
 
             $magangs = (Auth::user()->roles == 'admin') ? Magang::with(["pembina", 'HistoryMagang'])->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina"])->where("id_pembina", Auth::user()->id)->where('nama_lengkap', 'like', "%" . $request->search . "%")->latest()->paginate(5) : "");
         } else {
+
             $magangs = (Auth::user()->roles == 'admin') ? Magang::with(['pembina', 'HistoryMagang'])->latest()->paginate(5) : ((Auth::user()->roles == 'pembina') ? Magang::with(["pembina", 'HistoryMagang'])->where("id_pembina", Auth::user()->pembina->id)->latest()->paginate(5) : "");
         }
 
@@ -203,5 +204,20 @@ class MagangController extends Controller
         }
 
         return redirect()->route('dashboard');
+    }
+    public function deleteReject(Magang $magang,Request $request){
+
+        $user = $magang->user_id;
+        $deleteUser = User::find($user);
+        $magang->delete();
+        $deleteUser->delete();
+
+        $magang->delete();
+        Auth::guard('web')->logout();
+
+        $request->session()->invalidate();
+
+        $request->session()->regenerateToken();
+        return redirect()->route('home.index')->with("message", "Status Magang Telah Di Hapus Bisa Di inputkan kembali ");
     }
 }

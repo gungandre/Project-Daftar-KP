@@ -31,7 +31,7 @@
                             <!-- Text input -->
                             <div class="mb-4 form-outline">
                                 <input type="text" id="form6Example3" name="nama_lengkap"
-                                    value="{{ $magang->user->nama_lengkap }}" class="form-control" />
+                                    value="{{ $magang->User->nama_lengkap }}" class="form-control" />
                                 <label class="form-label" for="form6Example3">Nama Lengkap</label>
                             </div>
 

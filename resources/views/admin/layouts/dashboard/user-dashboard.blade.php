@@ -85,6 +85,17 @@
                 <td>Pembimbing Lapangan : {{ $data->Pembina->nama_pembina ?? null }}</td>
             </tr> --}}
         </table>
-        <a class="btn btn-primary" href="{{ route('magang.editprofile', $data->id) }}">Edit Data</a>
+        @if ($data->status == 'ditolak')
+            <form action="{{route('magang.deleteReject',$data->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button  class="btn btn-danger"
+                onclick="return confirm('Apakah anda Inging melanjutkannya ?')"><i
+                    class="bx bx-trash me-1"></i>Delete</button>
+            </form>
+            @else
+            <a class="btn btn-primary" href="{{ route('magang.editprofile', $data->id) }}">Edit Data</a>
+        @endif
+
     </div>
 </div>
