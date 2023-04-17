@@ -21,4 +21,8 @@ class DivisiModel extends Model
     {
         return $this->belongsToMany(Pembina::class, 'table_pembina_divisi', 'divisi_model_id', 'pembina_id')->withPivot("ruangan");
     }
+    public function pembinaCopy()
+    {
+        return $this->hasMany(Pembina::class);
+    }
 }

@@ -33,4 +33,6 @@ class Pembina extends Model
     {
         return $this->belongsToMany(DivisiModel::class, 'table_pembina_divisi', 'pembina_id', 'divisi_model_id')->withPivot("ruangan");
     }
+
+
 }

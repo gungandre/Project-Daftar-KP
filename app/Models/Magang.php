@@ -39,6 +39,10 @@ Magang extends Model
     {
         return $this->belongsTo(Pembina::class, 'id_pembina', 'id');
     }
+    public function PembinaCopty()
+    {
+        return $this->belongsTo(Pembina::class, 'id_pembina', 'id');
+    }
 
     public function Nilai()
     {
@@ -49,4 +53,5 @@ Magang extends Model
     {
         return $this->hasOne(HistroyMahasiswaMagang::class, "magang_id", "id");
     }
+
 }
