@@ -21,13 +21,18 @@ class Periode
         $now = Carbon::now();
         $periode = PeriodePendaftaran::where('status', 'active')->first();
 
+        if (!$periode) {
+            // No active registration period found
+            return redirect()->back()->with('error', 'Maaf, pendaftaran belum dibuka.');
+        }
+
         if ($now < $periode->tanggal_buka) {
             // Registration period has not started yet
             return redirect()->back()->with('error', 'Maaf, pendaftaran belum dibuka.');
         }
 
-        if ($now > $periode->tanggal_tutup) {
-            // Registration period has ended
+        if ($periode->tanggal_tutup === null || $now > $periode->tanggal_tutup) {
+            // Registration period has ended or the end date is null
             return redirect()->back()->with('error', 'Maaf, pendaftaran sudah ditutup.');
         }
 
