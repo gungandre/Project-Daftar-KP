@@ -21,11 +21,7 @@
                     </div>
                 </div>
             </div>
-            <div class="form-outline mb-4">
-                <label class="form-label" for="form3Example3">Jumlah Mahasiswa Diterima</label>
-                <input type="number" name="jumlah_mahasiswa_daftar" value="{{ $magang }}" id="form3Example3"
-                    class="form-control" />
-            </div>
+
 
             <input type="submit" class="btn btn-primary">
         </form>
@@ -34,7 +30,7 @@
             <thead>
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">jumlah Mahasiswa</th>
+
                     <th scope="col">Pendaftaran</th>
                     <th scope="col">Penutupan</th>
                     <th scope="col">Status</th>
@@ -48,7 +44,6 @@
                 @foreach ($periode as $item)
                     <tr>
                         <th scope="row">{{ $i++ }}</th>
-                        <td>{{ $item->jumlah_mahasiswa_daftar }}</td>
                         <td>{{ $item->tanggal_buka }}</td>
                         <td>{{ $item->tanggal_tutup }}</td>
                         <td>{{ $item->status }}</td>

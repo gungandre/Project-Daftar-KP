@@ -23,7 +23,8 @@ class CheckNilai
         $chekDateNow = Carbon::now();
         $id = $request->route('nilai');
 
-        $maganggan = Magang::find($id->id);
+        $maganggan = Magang::find($id->magang_id);
+
         if($chekDateNow < $maganggan->selesai_magang){
             return redirect()->route('dashboard')->with('error','Maaf belum waktunya memberi nilai');
         }

@@ -40,9 +40,9 @@
                     </p>
                     <hr>
                     @if ($data->status == 'ditolak')
-                        <p> <b>Alasan Diterima :</b> <br> {{ $magang->HistoryMagang->keterangan }} </p>
+                        <p> <b>Status Diterima :</b> <br> {{ $magang->HistoryMagang->keterangan }} </p>
                     @elseif($data->status == 'active')
-                        <p> <b>Alasan Diterima :</b> <br> {{ $magang->status_desc }} </p>
+                        <p> <b>Status Diterima :</b> <br> {{ $magang->status_desc }} </p>
                     @endif
 
                     <hr>
