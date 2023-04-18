@@ -91,7 +91,7 @@
                 @method('DELETE')
                 <button  class="btn btn-danger"
                 onclick="return confirm('Apakah anda Inging melanjutkannya ?')"><i
-                    class="bx bx-trash me-1"></i>Delete</button>
+                    class="bx bx-trash me-1"></i>Hapus Data ini ?</button>
             </form>
             @else
             <a class="btn btn-primary" href="{{ route('magang.editprofile', $data->id) }}">Edit Data</a>
